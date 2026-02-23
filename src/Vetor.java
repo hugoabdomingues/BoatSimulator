@@ -1,3 +1,5 @@
+import java.awt.*;
+
 /**
  * Classe que representa um vetor no plano.
  * @author Hugo_Domingues
@@ -9,9 +11,10 @@ public class Vetor {
 
     /**
      * Construtor que cria um vetor a partir de um ponto.
+     *
      * @param a Ponto a partir do qual vamos criar um vetor
      */
-    public Vetor (Ponto a) {
+    public Vetor(Ponto a) {
         if (a.getX() == 0 && a.getY() == 0) { //invariante
             System.out.println("Vetor:iv");
             System.exit(0); // o 0 significa que o programa terminou normalmente. É uma maneira de forçar a paragem do programa
@@ -22,48 +25,137 @@ public class Vetor {
 
     /**
      * Cálcula o módulo do vetor
+     *
      * @return O módulo
      */
-    public double modulo () {return Math.sqrt(Math.pow(p.getX(), 2) + Math.pow(p.getY(), 2));}
+    public double modulo() {
+        return Math.sqrt(Math.pow(p.getX(), 2) + Math.pow(p.getY(), 2));
+    }
 
     /**
      * Cálcula o produto interno do vetor com outro vetor (pedido no input)
      * No Construtor (this.x, this.y) definimos as características que são fixas do objeto. O vetor vai ter sempre estas coordenadas X e Y dele.
      * Já nos Parênteses da função definimos os valores que o vetor precisa apenas neste momento para fazer uma conta.
+     *
      * @param v2 Segundo vetor inserido.
      * @return resultado do produto interno
      */
-    public double produtoInterno (Vetor v2) {
+    public double produtoInterno(Vetor v2) {
         return this.p.getX() * v2.getX() + this.getY() * v2.getY(); //multiplicamos o ponto do construtor (primeiro scan) com o segundo ponto que vem do scan diretamente para o argumento da função
     }
 
     /**
      * Cálcula o Cossine similarity entre o vetor atual da classe com outro vetor
+     *
      * @param v2 segundo vetor pedido no input
      * @return O resultado da fórmula
      */
-    public double cossineSimilarity (Vetor v2) {
+    public double cossineSimilarity(Vetor v2) {
         return produtoInterno(v2) / (this.modulo() * v2.modulo());
     }
 
     /**
      * Assessor/getter da coordenada x do vetor
+     *
      * @return O x do vetor
      */
-    public double getX() {return this.p.getX();}
+    public double getX() {
+        return this.p.getX();
+    }
 
     /**
      * Assessor/getter da coordenada y do vetor
+     *
      * @return O y do vetor
      */
-    public double getY() {return this.p.getY();}
+    public double getY() {
+        return this.p.getY();
+    }
 
     /**
      * Assessor/getter do ponto que forma o vetor
+     *
      * @return O ponto
      */
-    public Ponto getPonto()
-    {
+    public Ponto getPonto() {
         return this.p;
     }
+
+    /**
+     * Verifica se o vetor interseta com o segmento de reta no plano
+     * primeiro cálculamos o declive do vetor e o declive do segmento de reta que vão ser ambas retas --> y = mx
+     * Em seguida, verificamos se o ponto em que intersetam está dentro do intervalo de pontos com que estamos a trabalhar
+     *
+     * @param v segmento de reta
+     * @return o ponto de interseção ou null
+     * @see https://brasilescola.uol.com.br/matematica/regra-cramer.htm
+     * @see https://cp-algorithms.com/geometry/lines-intersection.html
+     */
+    public Ponto intersect(SegmentoReta v) {
+
+        Ponto pontoA = v.getPontoA();
+        Ponto pontoB = v.getPontoB();
+
+
+        // Ax + By = C
+        /* A = yB - yA
+         *  B = xA - xB
+         *  C = A * xA + B * yA
+         * */
+
+        // Reta do Vetor:
+        double Avetor = this.p.getY() - 0;
+        double Bvetor = 0 - this.p.getX();
+        double Cvetor = (Avetor * 0) + (Bvetor * 0);
+
+        // Reta do Segmento de Reta:
+        double Asegmento = pontoB.getY() - pontoA.getY();
+        double Bsegmento = pontoA.getX() - pontoB.getX();
+        double Csegmento = (Asegmento * pontoA.getX()) + (Bsegmento * pontoA.getY());
+
+        //Cálculo do Determinante... se este for igual a 0 então as retas são paralelas (não se intersetam)
+        //se for diferente de 0 então elas intersetam-se  -->> resta saber se intersetam no intervalo compreeendido pelos pontos do vetor e do segmento de reta
+        // D = (Avetor * Bsegmento) - (Bvetor * Asegmento)
+        double determinante = (Avetor * Bsegmento) - (Bvetor * Asegmento);
+
+        if (determinante == 0) {
+            return null;
+        } else {
+            //Cálculamos o X e o Y do ponto em que intersetam
+            // X = Dx / D
+            // Y = Dy / D
+
+            //Dx = (Cvetor * Bsegmento) - (Csegmento * Asegmento)
+            double Dx = (Cvetor * Bsegmento) - (Csegmento * Asegmento);
+
+            //Dy = (Avetor * Csegmento) - (Cvetor * Bvetor)
+            double Dy = (Avetor * Csegmento) - (Cvetor * Bvetor);
+
+            double pontoX = Dx/determinante;
+            double pontoY = Dy/determinante;
+
+            //verificamos agora se este ponto está compreendido no intervalo.
+        }
+
+
+
+            /*
+            // Declive do Segmento de reta (yB-yA)/(xB-xA)
+            double mSegmentoReta = (v.getPontoB().getY() - v.getPontoA().getY()) / (v.getPontoB().getX() - v.getPontoA().getX());
+
+            // Declive do Vetor:
+            //verificamos se o X do ponto do vetor não é zero para evitarmos que o mesmo exploda
+            if (this.p.getX() == 0) {
+                if (v.getPontoA().getX()<= 0 && v.getPontoB().getX() > 0 && )
+            }else {
+                // O declive do vetor vai ser y/x pois o vetor começa na origem... ou seja (y-0)/(x-0)
+                double mVetor = this.p.getY() / this.p.getX();
+
+            }*/
+
+        return null;
+    }
+
 }
+
+
