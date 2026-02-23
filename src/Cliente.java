@@ -10,6 +10,7 @@ public class Cliente {
      * Método principal que lê os dados de entrada e imprime o resultado.
      * @param args Argumentos do terminal.
      */
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         //1ª linha

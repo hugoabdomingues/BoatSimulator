@@ -87,9 +87,10 @@ public class Vetor {
      * Em seguida, verificamos se o ponto em que intersetam está dentro do intervalo de pontos com que estamos a trabalhar
      *
      * @param v segmento de reta
-     * @return o ponto de interseção ou null
-     * @see https://brasilescola.uol.com.br/matematica/regra-cramer.htm
-     * @see https://cp-algorithms.com/geometry/lines-intersection.html
+     * @return o ponto de interseção ou null, caso não haja interseção
+     * @see "https://brasilescola.uol.com.br/matematica/regra-cramer.htm"
+     * @see "https://cp-algorithms.com/geometry/lines-intersection.html"
+     * @see "https://www.baeldung.com/java-check-point-straight-line"
      */
     public Ponto intersect(SegmentoReta v) {
 
@@ -126,7 +127,7 @@ public class Vetor {
             // Y = Dy / D
 
             //Dx = (Cvetor * Bsegmento) - (Csegmento * Asegmento)
-            double Dx = (Cvetor * Bsegmento) - (Csegmento * Asegmento);
+            double Dx = (Cvetor * Bsegmento) - (Csegmento * Bvetor);
 
             //Dy = (Avetor * Csegmento) - (Cvetor * Bvetor)
             double Dy = (Avetor * Csegmento) - (Cvetor * Bvetor);
@@ -135,27 +136,22 @@ public class Vetor {
             double pontoY = Dy/determinante;
 
             //verificamos agora se este ponto está compreendido no intervalo.
+            Ponto pontoIntersecao = new Ponto(pontoX, pontoY);
+
+            // Usamos a noção de que se distância (AC) + distância (CB) == distância (AB) --> então o ponto de interseção está no segmento de reta
+            //cálculamos a distância de AB:
+            double distanciaAB = Math.sqrt((pontoB.getY() - pontoA.getY()) * (pontoB.getY() - pontoA.getY()) + (pontoB.getX() - pontoA.getX()) * (pontoB.getX() - pontoA.getX()));
+
+            //calculamos distância de AC:
+            double distanciaAC = Math.sqrt((pontoIntersecao.getY() - pontoA.getY()) * (pontoIntersecao.getY() - pontoA.getY()) + (pontoIntersecao.getX() - pontoA.getX()) * (pontoIntersecao.getX() - pontoA.getX()));
+            double distanciaBC = Math.sqrt((pontoIntersecao.getY() - pontoB.getY()) * (pontoIntersecao.getY() - pontoB.getY()) + (pontoIntersecao.getX() - pontoB.getX()) * (pontoIntersecao.getX() - pontoB.getX()));
+            if (distanciaAC + distanciaBC == distanciaAB) {
+                return pontoIntersecao;
+            } else{
+                return null;
+            }
         }
-
-
-
-            /*
-            // Declive do Segmento de reta (yB-yA)/(xB-xA)
-            double mSegmentoReta = (v.getPontoB().getY() - v.getPontoA().getY()) / (v.getPontoB().getX() - v.getPontoA().getX());
-
-            // Declive do Vetor:
-            //verificamos se o X do ponto do vetor não é zero para evitarmos que o mesmo exploda
-            if (this.p.getX() == 0) {
-                if (v.getPontoA().getX()<= 0 && v.getPontoB().getX() > 0 && )
-            }else {
-                // O declive do vetor vai ser y/x pois o vetor começa na origem... ou seja (y-0)/(x-0)
-                double mVetor = this.p.getY() / this.p.getX();
-
-            }*/
-
-        return null;
     }
-
 }
 
 

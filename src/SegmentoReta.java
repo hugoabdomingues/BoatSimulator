@@ -76,9 +76,10 @@ public class SegmentoReta {
     public Ponto getPontoB() {return this.pontoB;}
 
     /**
-     * Cálculo
-     * @param v
-     * @return
+     * Cáculo do ponto de interseção entre o vetor e o segmento de reta
+     * Usamos para este fim o método intersecao da classe vetor
+     * @param v vetor v
+     * @return retorna o ponto de interseção ou null, caso não haja interseção
      */
     public Ponto intersect(Vetor v) {return v.intersect(this); }
 }
