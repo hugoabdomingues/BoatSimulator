@@ -96,14 +96,11 @@ public class Vetor {
 
         Ponto pontoA = v.getPontoA();
         Ponto pontoB = v.getPontoB();
-
-
-        // Ax + By = C
+        // Formato geral: Ax + By = C
         /* A = yB - yA
          *  B = xA - xB
          *  C = A * xA + B * yA
          * */
-
         // Reta do Vetor:
         double Avetor = this.p.getY() - 0;
         double Bvetor = 0 - this.p.getX();
