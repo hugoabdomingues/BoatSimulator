@@ -13,14 +13,16 @@ public class Cliente {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        //1ª linha
+        //1ª linha (coordenadas cartesianas dos pontos A e B)
         Ponto pontoA = new Ponto(sc.nextDouble(),sc.nextDouble());
         Ponto pontoB = new Ponto(sc.nextDouble(), sc.nextDouble());
-        //2ª linha
-        Vetor vetorB = new Vetor(new Ponto(sc.nextDouble(), sc.nextDouble()));
+        //2ª linha (vetor que indica a velocidade do vento em cada eixo X e Y)
+        Vetor vetorW = new Vetor(new Ponto(sc.nextDouble(), sc.nextDouble()));
+        //3ª linha (tempo desejado para efetuar a viagem de A a B)
+        double t = sc.nextFloat();
 
         //output
-        System.out.println(vetorB.intersect(new SegmentoReta(pontoA, pontoB)));
+        System.out.println(vetorW.intersect(new SegmentoReta(pontoA, pontoB)));
 
 
         //System.out.println(new SegmentoReta(pontoA, pontoB));
