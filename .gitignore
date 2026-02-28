@@ -1,0 +1,8 @@
+# Pastas do IntelliJ
+.idea/
+*.iml
+
+# Pastas de código compilado
+out/
+target/
+bin/
