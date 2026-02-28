@@ -163,6 +163,13 @@ public class Vetor {
     }
 
     /**
+     *
+     */
+    public Vetor sub (Vetor v) {
+        return new Vetor(new Ponto(this.getX() - v.getX(), this.getY() - v.getY()));
+    }
+
+    /**
      * conversão do Vetor para String, com o formato [x,y], respeitando as duas casas decimais
      * @return vetor em formato string [x,y]
      */

@@ -8,29 +8,21 @@ import java.util.Scanner;
 public class Cliente {
     /**
      * Método principal que lê os dados de entrada e imprime o resultado.
-     * @param args Argumentos do terminal.
      */
 
-    public static void main(String[] args) {
+    public static void main() {
         Scanner sc = new Scanner(System.in);
-        //1ª linha (coordenadas cartesianas dos pontos A e B)
-        Ponto pontoA = new Ponto(sc.nextDouble(),sc.nextDouble());
-        Ponto pontoB = new Ponto(sc.nextDouble(), sc.nextDouble());
-        //2ª linha (vetor que indica a velocidade do vento em cada eixo X e Y)
-        Vetor vetorW = new Vetor(new Ponto(sc.nextDouble(), sc.nextDouble()));
-        //3ª linha (tempo desejado para efetuar a viagem de A a B)
-        double t = sc.nextFloat();
-
-        //output
-        System.out.println(vetorW.intersect(new SegmentoReta(pontoA, pontoB)));
-
-
-        //System.out.println(new SegmentoReta(pontoA, pontoB));
-
-        //System.out.println(String.format("%.2f", vetor1.modulo()));
-        //double produtoInterno = vetor1.produtoInterno(vetor2);
-        //double cossineSimilarity = vetor1.cossineSimilarity(vetor2);
-        //System.out.println(String.format(("%.2f"), cossineSimilarity));
+        //Get start and finish points
+        Ponto start = new Ponto(sc.nextDouble(), sc.nextDouble());
+        Ponto finish = new Ponto(sc.nextDouble(), sc.nextDouble());
+        Vetor r = new Vetor(finish).sub(new Vetor(start));
+        //Get wind speed and direction
+        Vetor w = new Vetor(sc.nextDouble(), sc.nextDouble());
+        //Get the required time to reach the finish point
+        double t = sc.nextDouble();
         sc.close();
+        //Compute the required speed to reach the finish point in time t
+        Vetor s = r.sub(w).mult(1/t);
+        IO.println(s);
     }
 }
