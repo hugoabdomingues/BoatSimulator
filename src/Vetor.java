@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.Vector;
 
 /**
  * Classe que representa um vetor no plano.
@@ -11,21 +12,19 @@ public class Vetor {
 
     /**
      * Construtor que cria um vetor a partir de um ponto.
-     *
-     * @param a Ponto a partir do qual vamos criar um vetor
+     * @param p Ponto a partir do qual vamos criar um vetor
      */
-    public Vetor(Ponto a) {
-        if (a.getX() == 0 && a.getY() == 0) { //invariante
+    public Vetor(Ponto p) {
+        if (p.getX() == 0 && p.getY() == 0) { //invariante
             System.out.println("Vetor:iv");
             System.exit(0); // o 0 significa que o programa terminou normalmente. É uma maneira de forçar a paragem do programa
         }
 
-        this.p = a;
+        this.p = p;
     }
 
     /**
      * Cálcula o módulo do vetor
-     *
      * @return O módulo
      */
     public double modulo() {
@@ -36,7 +35,6 @@ public class Vetor {
      * Cálcula o produto interno do vetor com outro vetor (pedido no input)
      * No Construtor (this.x, this.y) definimos as características que são fixas do objeto. O vetor vai ter sempre estas coordenadas X e Y dele.
      * Já nos Parênteses da função definimos os valores que o vetor precisa apenas neste momento para fazer uma conta.
-     *
      * @param v2 Segundo vetor inserido.
      * @return resultado do produto interno
      */
@@ -46,7 +44,6 @@ public class Vetor {
 
     /**
      * Cálcula o Cossine similarity entre o vetor atual da classe com outro vetor
-     *
      * @param v2 segundo vetor pedido no input
      * @return O resultado da fórmula
      */
@@ -56,7 +53,6 @@ public class Vetor {
 
     /**
      * Assessor/getter da coordenada x do vetor
-     *
      * @return O x do vetor
      */
     public double getX() {
@@ -65,7 +61,6 @@ public class Vetor {
 
     /**
      * Assessor/getter da coordenada y do vetor
-     *
      * @return O y do vetor
      */
     public double getY() {
@@ -74,7 +69,6 @@ public class Vetor {
 
     /**
      * Assessor/getter do ponto que forma o vetor
-     *
      * @return O ponto
      */
     public Ponto getPonto() {
@@ -148,6 +142,32 @@ public class Vetor {
                 return null;
             }
         }
+    }
+
+    /**
+     * Multiplica o X e o Y do vetor pelo escalar d.
+     * @param d escalar
+     * @return vetor multiplicado pelo escalar d
+     */
+    public Vetor mult(double d) {
+        return new Vetor(new Ponto(this.getX() * d, this.getY() * d));
+    }
+
+    /**
+     * Soma o vetor atual com o vetor V
+     * @param v vetor v
+     * @return novo vetor calculado a partir da soma do atual com o vetor v
+     */
+    public Vetor add(Vetor v) {
+        return new Vetor(new Ponto(this.getX() + v.getX(), this.getY() + v.getY()));
+    }
+
+    /**
+     * conversão do Vetor para String, com o formato [x,y], respeitando as duas casas decimais
+     * @return vetor em formato string [x,y]
+     */
+    public String toString() {
+        return String.format("[%.2f,%.2f]", this.getX(), this.getY());
     }
 }
 
