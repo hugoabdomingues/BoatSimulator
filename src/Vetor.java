@@ -117,7 +117,7 @@ public class Vetor {
             // X = Dx / D
             // Y = Dy / D
 
-            //Dx = (Cvetor * Bsegmento) - (Csegmento * Asegmento)
+            //Dx = (Cvetor * Bsegmento) - (Csegmento * Bvetor)
             double Dx = (Cvetor * Bsegmento) - (Csegmento * Bvetor);
 
             //Dy = (Avetor * Csegmento) - (Cvetor * Bvetor)
