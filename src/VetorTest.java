@@ -4,37 +4,34 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class VetorTest {
 
-
-    //NOTA: perguntar ao professor se crio os pontos/vetores/etc em cada teste ou se crio variáveis globais para evitar repetição
-
     /**
-     * Testes da Classe Ponto
-     */
-    /**
-     * Teste do Construtor do Ponto
+     * teste do Construtor da classe vetor
      */
     @Test
-    public void testConstrutorPonto () {
-        assertEquals("(1.00,3.00)", new Ponto(1, 3).toString());
+    public void testeConstrutorVetor() {
+        assertEquals("[1.00,3.00]", new Vetor(new Ponto(1, 3)).toString());
     }
 
     /**
-     * teste do getX da classe Ponto
+     * teste do modulo
      */
     @Test
-    public void testPontoGetX() {
-        assertEquals(1, new Ponto(1, 3).getX());
+    public void testModulo() {
+        assertEquals(4, new Vetor(new Ponto(4, 0)).modulo());
     }
 
     /**
-     * teste do getY da classe Ponto
+     * teste do produto interno
      */
     @Test
-    public void testPontoGetY() {
-        assertEquals(3, new Ponto(1, 3).getY());
+    public void testProdutoInterno () {
+        Vetor vetor1 = new Vetor(new Ponto(2,2));
+        Vetor vetor2 = new Vetor(new Ponto(2,3));
+        vetor1.produtoInterno(vetor2);
+
     }
     /**
-     * Teste do
+     * teste do cossine similarity
      */
 
     /**
@@ -42,7 +39,6 @@ public class VetorTest {
      */
     @Test
     public void testAdd (){
-
         Vetor vetor1 = new Vetor(new Ponto(2, -2));
         Vetor vetor2 = new Vetor(new Ponto(1, 3));
 
