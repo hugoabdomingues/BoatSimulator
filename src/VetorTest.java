@@ -75,17 +75,31 @@ public class VetorTest {
         Vetor v2 = new Vetor(new Ponto(2,2));
         assertNull(v2.intersect(new SegmentoReta(pontoA2,pontoB2)));
         //testar a mensagem "SegmentoReta:iv":
-        Ponto pontoA3 = new Ponto(2,2);
-        Ponto pontoB3 = new Ponto(2,2);
-        Vetor v3 = new Vetor(new Ponto(1,4));
-        assertThrows("SegmentoReta:iv", v3.intersect(new SegmentoReta(pontoA3,pontoB3)).toString());
-        assertEquals("SegmentoReta:iv", v3.intersect(new SegmentoReta(pontoA3,pontoB3)).toString());
-        //testar a mensagem "Vetor:iv":
-        Ponto pontoA4 = new Ponto(2,0);
-        Ponto pontoB4 = new Ponto(-1,2);
-        Vetor v4 = new Vetor(new Ponto(0,0));
-        assertEquals("Vetor:iv", v4.intersect(new SegmentoReta(pontoA4,pontoB4)).toString());
+
+
     }
+
+    /**
+     * teste exceção "Vetor:iv" da função intersect
+     */
+    @Test
+    public void testExcecaoVetor() {
+        Exception erro = assertThrows(IllegalArgumentException.class, () -> new Vetor(new Ponto(0,0)));
+        assertEquals("Vetor:iv", erro.getMessage());
+    }
+
+    /**
+     * Teste SegmentoReta:iv
+     */
+    @Test
+    public void testExcecaoSegmento() {
+        Ponto pontoA = new Ponto(2,2);
+        Ponto pontoB = new Ponto(2,2);
+        Exception erro = assertThrows(IllegalArgumentException.class, () -> new Vetor(new Ponto(1,4)).intersect(new SegmentoReta(pontoA,pontoB)));
+        assertEquals("SegmentoReta:iv", erro.getMessage());
+    }
+
+
 
 
 

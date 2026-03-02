@@ -32,8 +32,7 @@ public class SegmentoReta {
      */
     public SegmentoReta(Ponto pontoA, Ponto pontoB) {
         if (pontoA.getX() == pontoB.getX() && pontoA.getY() == pontoB.getY()) { //invariante da classe
-            System.out.println("SegmentoReta:iv");
-            System.exit(0);
+            throw new IllegalArgumentException("SegmentoReta:iv");
         }
         this.pontoA = pontoA;
         this.pontoB = pontoB;
