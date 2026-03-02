@@ -78,6 +78,7 @@ public class VetorTest {
         Ponto pontoA3 = new Ponto(2,2);
         Ponto pontoB3 = new Ponto(2,2);
         Vetor v3 = new Vetor(new Ponto(1,4));
+        assertThrows("SegmentoReta:iv", v3.intersect(new SegmentoReta(pontoA3,pontoB3)).toString());
         assertEquals("SegmentoReta:iv", v3.intersect(new SegmentoReta(pontoA3,pontoB3)).toString());
         //testar a mensagem "Vetor:iv":
         Ponto pontoA4 = new Ponto(2,0);

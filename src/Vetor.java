@@ -15,9 +15,8 @@ public class Vetor {
      * @param p Ponto a partir do qual vamos criar um vetor
      */
     public Vetor(Ponto p) {
-        if (p.getX() == 0 && p.getY() == 0) { //invariante
-            System.out.println("Vetor:iv");
-            System.exit(0); // o 0 significa que o programa terminou normalmente. É uma maneira de forçar a paragem do programa
+        if (p.getX() == 0 && p.getY() == 0) {//invariante
+            throw new IllegalArgumentException("Vetor:iv");
         }
 
         this.p = p;

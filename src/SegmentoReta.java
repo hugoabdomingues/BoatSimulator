@@ -21,8 +21,7 @@ public class SegmentoReta {
         this.pontoA = a;
         this.pontoB = this.pontoA.move(b);
         if (pontoA.getX() == pontoB.getX() && pontoA.getY() == pontoB.getY()) { //invariante da classe
-            System.out.println("SegmentoReta:iv");
-            System.exit(0);
+            throw new IllegalArgumentException("SegmentoReta:iv");
         }
     }
 
