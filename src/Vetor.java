@@ -23,6 +23,15 @@ public class Vetor {
     }
 
     /**
+     * 2º construtor da classe vetor
+     * @param x coordenado x do ponto
+     * @param y coordenada y do ponto
+     */
+    public Vetor(double x, double y) {
+        this(new Ponto(x,y)); //fazemos um ponto das coordenadas e chamamos o primeiro construtor com "this". Enviamos o Ponto para o 1º construtor e o mesmo é processado.
+    }
+
+    /**
      * Cálcula o módulo do vetor
      * @return O módulo
      */

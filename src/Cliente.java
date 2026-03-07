@@ -6,12 +6,9 @@ import java.util.Scanner;
  * @version 22-02-2026
  */
 public class Cliente {
-    /**
-     * Método principal que lê os dados de entrada e imprime o resultado.
-     */
 
     public static void main() {
-      /*  Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         //Get start and finish points
         Ponto start = new Ponto(sc.nextDouble(), sc.nextDouble());
         Ponto finish = new Ponto(sc.nextDouble(), sc.nextDouble());
@@ -23,6 +20,7 @@ public class Cliente {
         sc.close();
         //Compute the required speed to reach the finish point in time t
         Vetor s = r.sub(w).mult(1/t);
-        IO.println(s);*/
+        IO.println(s);
+
     }
 }
