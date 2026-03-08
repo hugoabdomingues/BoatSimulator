@@ -26,6 +26,7 @@ public class AutoPilot {
      * @param windSpeed deslocamento do avião executado pelo vento
      * @param linearSpeed velocidade do avião passada pelo main
      * @return o tempo que demora a viagem do ponto A ao ponto B
+     * @see "apontamentos de Física I"
      */
     public double time(Vetor windSpeed, double linearSpeed) {
         //deslocamento de A a B = B-A

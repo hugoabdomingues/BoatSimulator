@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+
 /**
  * Classe que representa um vetor no plano.
  * @author Hugo_Domingues
