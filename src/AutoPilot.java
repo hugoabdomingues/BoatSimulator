@@ -1,7 +1,7 @@
 /**
  * Classe que representa o autopiloto
  * @author Hugo_Domingues
- * @version 21-02-2026
+ * @version 08-03-2026
  * @inv pontoA não pode ser igual ao pontoB
  */
 public class AutoPilot {
@@ -23,21 +23,35 @@ public class AutoPilot {
 
     /**
      * Cálcula o tempo necessário para um avião se deslocar do ponto A ao ponto B
-     * @param windSpeed velocidade do vento
-     * @param linearSpeed velocidade do avião
+     * @param windSpeed deslocamento do avião executado pelo vento
+     * @param linearSpeed velocidade do avião passada pelo main
      * @return o tempo que demora a viagem do ponto A ao ponto B
      */
     public double time(Vetor windSpeed, double linearSpeed) {
-
         //deslocamento de A a B = B-A
         Vetor deslocamento = new Vetor(pontoB).sub(new Vetor(pontoA));
 
-
+        // vetor que representa o deslocamento do avião usando os motores (o resto do deslocamento é o vetor windspeed que faz)
+        //para mais informação verificar gráficos feitos no caderno
+        Vetor vt = deslocamento.sub(windSpeed);
+        //t = distância / velocidade
+        // distância = módulo de vt
+        return vt.modulo()/linearSpeed;
 
     }
 
+    /**
+     * cálcula o vetor velocidade
+     * @param windSpeed deslocamento do avião executado pelo vento
+     * @param time tempo calculado no metodo time.
+     * @return vetor velocidade do avião
+     */
     public Vetor speed (Vetor windSpeed, double time) {
 
+        //deslocamento de A a B = B-A
+        Vetor deslocamento = new Vetor(pontoB).sub(new Vetor(pontoA));
+        // v = (r - w)/t
+        return (deslocamento.sub(windSpeed)).mult(1/time);
     }
 
 
