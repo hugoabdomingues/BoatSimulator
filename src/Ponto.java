@@ -21,7 +21,7 @@ public class Ponto {
      * Assessor/getter da coordenada x do ponto.
      * @return o valor do x do ponto.
      */
-    public double getX () {
+    public double getX() {
         return this.x;
     }
 
@@ -38,7 +38,7 @@ public class Ponto {
      * conversão do ponto para String, com o formato (x,y), respeitando as duas casas decimais
      * @return uma string com as coordenadas do ponto (x,y)
      */
-    public String toString(){
+    public String toString() {
         return String.format("(%.2f,%.2f)", this.x, this.y);
     }
 
@@ -49,5 +49,9 @@ public class Ponto {
      */
     public Ponto move(Vetor b) {
         return new Ponto(this.getX() + b.getX(), this.getY() + b.getY());
+    }
+
+    public double distanciaPontos(Ponto p) {
+        return Math.sqrt(Math.pow(this.x - p.x, 2) + Math.pow(this.y - p.y, 2));
     }
 }
