@@ -140,7 +140,6 @@ public class Vetor {
             // Usamos a noção de que se distância (AC) + distância (CB) == distância (AB) --> então o ponto de interseção está no segmento de reta
             //cálculamos a distância de AB:
             double distanciaAB = Math.sqrt((pontoB.getY() - pontoA.getY()) * (pontoB.getY() - pontoA.getY()) + (pontoB.getX() - pontoA.getX()) * (pontoB.getX() - pontoA.getX()));
-
             //calculamos distância de AC:
             double distanciaAC = Math.sqrt((pontoIntersecao.getY() - pontoA.getY()) * (pontoIntersecao.getY() - pontoA.getY()) + (pontoIntersecao.getX() - pontoA.getX()) * (pontoIntersecao.getX() - pontoA.getX()));
             double distanciaBC = Math.sqrt((pontoIntersecao.getY() - pontoB.getY()) * (pontoIntersecao.getY() - pontoB.getY()) + (pontoIntersecao.getX() - pontoB.getX()) * (pontoIntersecao.getX() - pontoB.getX()));

@@ -80,6 +80,81 @@ public class SegmentoReta {
      * @return retorna o ponto de interseção ou null, caso não haja interseção
      */
     public Ponto intersect(Vetor v) {return v.intersect(this); }
+
+
+    /**
+     * Cálcular o ponto de interseção entre dois segmentos de reta (um deles é o da classe)
+     * @param parede segmento de reta que representa onde a rota pode "bater"
+     * @return ponto de interseção OU null.
+     */
+    public Ponto intersectRotas(SegmentoReta parede) {
+        // Formato geral: Ax + By = C
+        /* A = yB - yA
+         *  B = xA - xB
+         *  C = A * xA + B * yA
+         * */
+        // Reta do semento de reta que faz parte da rota:
+        double Arota = this.pontoB.getY() - this.pontoA.getY();
+        double Brota = this.pontoA.getX() - this.pontoB.getX();
+        double Crota = (Arota * this.pontoA.getX()) + (Brota * this.pontoA.getY());
+
+        // Reta do Segmento de Reta:
+        double Aparede = parede.getPontoB().getY() - parede.getPontoA().getY();
+        double Bparede = parede.getPontoA().getX() - parede.getPontoB().getX();
+        double Cparede = (Aparede * parede.getPontoA().getX()) + (Bparede * parede.getPontoA().getY());
+
+        //Cálculo do Determinante... se este for igual a 0 então as retas são paralelas (não se intersetam)
+        //se for diferente de 0 então elas intersetam-se  -->> resta saber se intersetam no intervalo compreeendido pelos pontos do vetor e do segmento de reta
+        // D = (Arota * Bsegmento) - (Brota * Aparede)
+        double determinante = (Arota * Bparede) - (Brota * Aparede);
+
+        if (determinante == 0) {
+            return null;
+        } else {
+            //Cálculamos o X e o Y do ponto em que intersetam
+            // X = Dx / D
+            // Y = Dy / D
+
+            //Dx = (Crota * Bsegmento) - (Cparede * Brota)
+            double Dx = (Crota * Bparede) - (Cparede * Brota);
+
+            //Dy = (Arota * Cparede) - (Crota * Aparede)
+            double Dy = (Arota * Cparede) - (Crota * Aparede);
+
+            double coordenadaX = Dx/determinante;
+            double coordenadaY = Dy/determinante;
+
+            //verificamos agora se este ponto está compreendido no intervalo.
+            Ponto pontoIntersecao = new Ponto(coordenadaX, coordenadaY);
+
+            //verificamos se o coordenadaX e o coordenadaY fazem parte do segmento rota e se fazem parte do segmento de reta parede. Se fizer parte de ambos, então o ponto é um ponto de interseção válido
+            //usamos caixas, tal como nos jogos, começando por verificar se o coordenadaX e o coordenadaY cabem na caixa feita pelo segmento de reta ROTA:
+            double minXRota = Math.min(this.pontoA.getX(), this.pontoB.getX());
+            double maxXRota = Math.max(this.pontoA.getX(), this.pontoB.getX());
+            double minYRota = Math.min(this.pontoA.getY(), this.pontoB.getY());
+            double maxYRota = Math.max(this.pontoA.getY(), this.pontoB.getY());
+
+            boolean dentroDaCaixaRota;
+            if (coordenadaX >= minXRota && coordenadaX <= maxXRota && coordenadaY >= minYRota && coordenadaY <= maxYRota){
+                dentroDaCaixaRota = true;
+            } else dentroDaCaixaRota = false;
+
+            //agora verificamos se a coordenadaX e a coordenadaY estão dentro da "caixa" criada pelo segmento de reta parede
+            double minXParede = Math.min(parede.getPontoA().getX(), parede.getPontoB().getX());
+            double maxXParede = Math.max(parede.getPontoA().getX(), parede.getPontoB().getX());
+            double minYParede = Math.min(parede.getPontoA().getY(), parede.getPontoB().getY());
+            double maxYParede = Math.max(parede.getPontoA().getY(), parede.getPontoB().getY());
+
+            boolean dentroDaCaixaParede;
+            if (coordenadaX >= minXParede && coordenadaX <= maxXParede && coordenadaY >= minYParede && coordenadaY <= maxYParede) {
+                dentroDaCaixaParede = true;
+            } else dentroDaCaixaParede = false;
+
+            if (dentroDaCaixaRota && dentroDaCaixaParede) {
+                return pontoIntersecao;
+            } else return null;
+        }
+    }
 }
 
 
