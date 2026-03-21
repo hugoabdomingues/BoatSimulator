@@ -189,6 +189,7 @@ public class SegmentoRetaTest {
     }
     /**
      * Teste 2 do intersectRota
+     * Um dos outputs supostos
      */
     @Test
     public void test2IntersectRota () {
@@ -196,9 +197,21 @@ public class SegmentoRetaTest {
         Route rota = new Route(pontosRota);
         SegmentoReta parede = new SegmentoReta(new Ponto(2,1), new Ponto(9,6));
         ArrayList<Ponto> pontosIntersecao = rota.intersecao(parede);
-        for (int i = 0; i < pontosIntersecao.size(); i++) {
-
-        }
-        assertEquals("(3.40,2.00) (6.00,3.86) (6.20,4.00)", rota.intersecao(parede).toString());
+        assertEquals(3, pontosIntersecao.size());
+        assertEquals("(3.40,2.00)", pontosIntersecao.get(0).toString());
+        assertEquals("(6.00,3.86)", pontosIntersecao.get(1).toString());
+        assertEquals("(6.20,4.00)", pontosIntersecao.get(2).toString());
+    }
+    /**
+     * Teste 3 do intersectRota
+     * Testamos com dois segmentos de reta que n se cruzam, mas que se cruzariam se fossem retas
+     */
+    @Test
+    public void test3IntersectRota () {
+        Ponto[] pontosRota = {new Ponto(0,0), new Ponto(2,0)};
+        Route rota = new Route(pontosRota);
+        SegmentoReta parede = new SegmentoReta(new Ponto(4,-2), new Ponto(4,2));
+        ArrayList<Ponto> pontosIntersecao = rota.intersecao(parede);
+        assertTrue(pontosIntersecao.isEmpty());
     }
 }

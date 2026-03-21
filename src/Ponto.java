@@ -1,7 +1,7 @@
 /**
  * Classe que representa um ponto no plano xOy
  * @author Hugo_Domingues
- * @version 21-02-2026
+ * @version 15-03-2026
  * @inv O ponto é definido por um x e um y.
  */
 public class Ponto {
@@ -65,6 +65,11 @@ public class Ponto {
         // considera-se que dois double d e g são iguais se |d-g| < 1e-9
         return Math.abs(this.x - p.x) < 1e-9 && Math.abs(this.y - p.y) < 1e-9;}
 
+    /**
+     * cálcular a distância entre dois pontos
+     * @param p pontoB
+     * @return distancia entre dois pontos
+     */
     public double distanciaPontos(Ponto p) {
         return Math.sqrt(Math.pow(this.x - p.x, 2) + Math.pow(this.y - p.y, 2));
     }

@@ -10,16 +10,20 @@ import java.util.Scanner;
  */
 public class Cliente {
 
-    public static void main() {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         //Primeira linha
         String stringPontos = sc.nextLine(); // metemos os pontos todos numa string do estilo: "0 1 1 1 4 4 4 3"
-        //segunda linha
-        SegmentoReta parede = new SegmentoReta(new Ponto(sc.nextDouble(),sc.nextDouble()), new Ponto(sc.nextDouble(),sc.nextDouble()));
-        //aranjamos agora a primeira linha:
-        String [] pontosSplit = stringPontos.split(" "); // separamos todos a cada espaço e metemos tudo num array. Cada elemento é uma coordenada
-        Ponto [] pontosLidos = new Ponto[pontosSplit.length / 2]; // Logo, a quantidade de pontos no input vai ser o length do array a dividir por 2.
+
+        //segunda linha input para colocar no segmento de reta parede mais tarde..
+        double x1 = sc.nextDouble(), y1= sc.nextDouble();
+        double x2 = sc.nextDouble(), y2 = sc.nextDouble();
+
+        //arranjamos agora a primeira linha:
+        String[] pontosSplit = stringPontos.split(" "); // separamos todos a cada espaço e metemos tudo num array. Cada elemento é uma coordenada
+        Ponto[] pontosLidos = new Ponto[pontosSplit.length / 2]; // Logo, a quantidade de pontos no input vai ser o length do array a dividir por 2.
         double coordenadaX = 0;
+        //inserir os pontos no array pontosLidos
         try {
             for (int i = 0; i < pontosSplit.length; i++) {
                 double coordenadaAtual = Double.parseDouble(pontosSplit[i]);
@@ -27,29 +31,32 @@ public class Cliente {
                     coordenadaX = coordenadaAtual;
                 } else {
                     // 1 / 2 = 0.5 = 0 ...... 3 / 2 = 1.5 = 1... e por aí adiante..
-                    pontosLidos[i / 2] = new Ponto(coordenadaX,coordenadaAtual);
+                    pontosLidos[i / 2] = new Ponto(coordenadaX, coordenadaAtual);
                 }
             }
-        }catch (NumberFormatException castError) {
+        } catch (NumberFormatException castError) {
             throw new IllegalArgumentException("input inválido.");
         }
-        Route rota = new Route(pontosLidos); //Criamos uma nova rota, constituida pelos pontos lidos no input, tendo estes sido guardados todos no array pontosLidos
-
-        sc.close();
-
-        System.out.printf("%.2f\n", rota.comprimentoTotal());
+        //tentamos criar a nova rota com pontos consecutivos diferentes..
         try {
-            ArrayList<Ponto> pontosIntersecao = rota.intersecao(parede);
-            if (pontosIntersecao.isEmpty()) {
-                System.out.println("null");
-            } else {
-                for (int i = 0; i < pontosIntersecao.size(); i++) {
-                    System.out.printf(pontosIntersecao.get(i).toString() + " ");
+            Route rota = new Route(pontosLidos); //Criamos uma nova rota, constituida pelos pontos lidos no input, tendo estes sido guardados todos no array pontosLidos
+            System.out.printf("%.2f\n", rota.comprimentoTotal()); // temos de imnprimir isto antes de verificarmos se o segmento de reta parede é válido, senão um erro iria lançar e n seria improsso no ecrã o comprimento do segmento de reta ROTA.
+            try {
+                SegmentoReta parede = new SegmentoReta(new Ponto(x1, y1), new Ponto(x2, y2));
+                ArrayList<Ponto> pontosIntersecao = rota.intersecao(parede);
+                if (pontosIntersecao.isEmpty()) {
+                    System.out.println("null");
+                } else {
+                    for (int i = 0; i < pontosIntersecao.size(); i++) {
+                        System.out.printf(pontosIntersecao.get(i).toString() + " ");
+                    }
                 }
+            } catch (IllegalArgumentException erroSegmento) {
+                System.out.println(erroSegmento.getMessage());
             }
-        }catch (IllegalArgumentException erroSegmento) {
-            System.out.println(erroSegmento.getMessage());
+        } catch (IllegalArgumentException pontosIguaisConsecutivos) {
+            System.out.println(pontosIguaisConsecutivos.getMessage());
         }
-
+        sc.close();
     }
 }

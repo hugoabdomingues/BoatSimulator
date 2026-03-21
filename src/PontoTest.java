@@ -76,5 +76,57 @@ public class PontoTest {
 
     }
 
+    /**
+     * Teste 1 do equals
+     * pontos iguais
+     */
+    @Test
+    public void test1EqualsPonto() {
+        assertEquals(new Ponto(1,1), new Ponto(1,1));
+    }
 
+    /**
+     * Teste 2 do equals
+     * pontos diferentes
+     */
+    @Test
+    public void test2EqualsPonto() {
+        assertNotEquals(new Ponto(2,2), new Ponto(1,1));
+    }
+    /**
+     * Teste 3 do equals
+     * objecto não é um ponto
+     */
+    @Test
+    public void test3EqualsPonto() {
+        assertNotEquals(new Ponto(2, 2), new Vetor(2, 2));
+    }
+
+    /**
+     * Teste 1 da DistanciaPonmtos
+     * distância horizontal simples
+     */
+    @Test
+    public void test1DistanciaPontos() {
+        // distância horizontal simples
+        assertEquals(4.0, new Ponto(0,0).distanciaPontos(new Ponto(4,0)), 1e-9);
+    }
+
+    /**
+     * distancia entre 2 pontos (diagonal)
+     */
+    @Test
+    public void test2DistanciaPontos() {
+        assertEquals(5.0, new Ponto(0,0).distanciaPontos(new Ponto(3,4)), 1e-9);
+    }
+
+    /**
+     * teste 3 distancia entre 2 pontos
+     * mesmo ponto, logo, distancia 0
+     */
+    @Test
+    public void test3DistanciaPontos() {
+        // mesmo ponto → distância 0
+        assertEquals(0.0, new Ponto(2,3).distanciaPontos(new Ponto(2,3)), 1e-9);
+    }
 }

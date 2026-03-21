@@ -4,7 +4,7 @@ import java.util.Vector;
 /**
  * Classe que representa um vetor no plano.
  * @author Hugo_Domingues
- * @version 21-02-2026
+ * @version 20-03-2026
  * @inv modulo() > 0
  */
 public class Vetor {

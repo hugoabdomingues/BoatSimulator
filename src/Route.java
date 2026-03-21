@@ -5,7 +5,7 @@ import java.util.IllegalFormatException;
  * Classe que representa a rota
  * @author Hugo_Domingues
  * @version 19-03-2026
- * @inv uma rota tem pelo menos 2 pontos e dois pontos segudios n podem ser iguais
+ * @inv uma rota tem pelo menos 2 pontos
  */
 public class Route {
     private Ponto[] pontos;
@@ -17,13 +17,9 @@ public class Route {
     public Route (Ponto[] pontos) {
 
         if (pontos.length < 2) {
-            throw new IllegalArgumentException("Erro: Uma rota tem de ter pelo menos 2 pontos.");
+            throw new IllegalArgumentException("Rota:iv");
         }
-        for (int i = 0; i < pontos.length - 1; i++) {
-            if (pontos[i].equals(pontos[i+1])){
-                throw new IllegalArgumentException("Erro: pontos consecutivos não podem ser iguais.");
-            }
-        }
+
         this.pontos = pontos;
     }
 
@@ -54,7 +50,8 @@ public class Route {
                 if (pontoTestado != null) {
                     pontosintersecao.add(pontoTestado);
                 }
-        }return pontosintersecao;
+        }
+         return pontosintersecao;
     }
 }
 
