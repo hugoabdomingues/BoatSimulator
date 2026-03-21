@@ -8,7 +8,6 @@ public class AutoPilot {
 
     private Ponto pontoA;
     private Ponto pontoB;
-    private SegmentoReta sr;
 
     /**
      * Construtor da classe AutoPilot
@@ -16,9 +15,11 @@ public class AutoPilot {
      * @param b ponto de chegada do avião
      */
     public AutoPilot (Ponto a, Ponto b) {
+        if(a.equals(b)) {
+            throw new IllegalArgumentException("SegmentoReta:iv");
+        }
         this.pontoA = a;
         this.pontoB = b;
-        this.sr = new SegmentoReta(a,b);
     }
 
     /**

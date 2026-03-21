@@ -15,7 +15,7 @@ public class Vetor {
      * @param p Ponto a partir do qual vamos criar um vetor
      */
     public Vetor(Ponto p) {
-        if (p.getX() == 0 && p.getY() == 0) {//invariante
+        if (p.equals(new Ponto(0,0))) {//invariante
             throw new IllegalArgumentException("Vetor:iv");
         }
 
@@ -118,7 +118,10 @@ public class Vetor {
         // D = (Avetor * Bsegmento) - (Bvetor * Asegmento)
         double determinante = (Avetor * Bsegmento) - (Bvetor * Asegmento);
 
-        if (determinante == 0) {
+        // determinante == 0 ?
+        // considera-se que dois double d e g são iguais se |d-g|<1e-9
+        // determinante == 0 se:
+        if (Math.abs(determinante) < 1e-9) {
             return null;
         } else {
             //Cálculamos o X e o Y do ponto em que intersetam
@@ -143,7 +146,9 @@ public class Vetor {
             //calculamos distância de AC:
             double distanciaAC = Math.sqrt((pontoIntersecao.getY() - pontoA.getY()) * (pontoIntersecao.getY() - pontoA.getY()) + (pontoIntersecao.getX() - pontoA.getX()) * (pontoIntersecao.getX() - pontoA.getX()));
             double distanciaBC = Math.sqrt((pontoIntersecao.getY() - pontoB.getY()) * (pontoIntersecao.getY() - pontoB.getY()) + (pontoIntersecao.getX() - pontoB.getX()) * (pontoIntersecao.getX() - pontoB.getX()));
-            if (distanciaAC + distanciaBC == distanciaAB) {
+            // considera-se que dois double d e g são iguais se |d-g| < 1e-9
+            //logo: distanciaAC + distanciaBC == distanciaAB se Math.abs(distanciaAC + distanciaBC - distanciaAB) < 1e-9
+            if (Math.abs(distanciaAC + distanciaBC - distanciaAB) < 1e-9) {
                 return pontoIntersecao;
             } else{
                 return null;
@@ -154,6 +159,7 @@ public class Vetor {
     /**
      * Multiplica o X e o Y do vetor pelo escalar d.
      * @param d escalar
+     * @throws IllegalArgumentException se o resultado for o vetor nulo (0,0)
      * @return vetor multiplicado pelo escalar d
      */
     public Vetor mult(double d) {
@@ -163,6 +169,7 @@ public class Vetor {
     /**
      * Soma o vetor atual com o vetor V
      * @param v vetor v
+     * @throws IllegalArgumentException se o resultado for o vetor nulo (0,0)
      * @return novo vetor calculado a partir da soma do atual com o vetor v
      */
     public Vetor add(Vetor v) {
@@ -170,7 +177,10 @@ public class Vetor {
     }
 
     /**
-     *
+     * Subtrai o vetor atual da classe com o vetor passado por argumento V
+     * @param v vetor a ser subtraído
+     * @throws IllegalArgumentException se o resultado for o vetor nulo (0,0)
+     * @return novo vetor resultante da subtração
      */
     public Vetor sub (Vetor v) {
         return new Vetor(new Ponto(this.getX() - v.getX(), this.getY() - v.getY()));

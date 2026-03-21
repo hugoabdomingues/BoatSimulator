@@ -20,7 +20,7 @@ public class SegmentoReta {
     public SegmentoReta(Ponto a, Vetor b) { //ponto B vai ser A + vetorB
         this.pontoA = a;
         this.pontoB = this.pontoA.move(b);
-        if (pontoA.getX() == pontoB.getX() && pontoA.getY() == pontoB.getY()) { //invariante da classe
+        if (pontoA.equals(pontoB)) { //invariante da classe
             throw new IllegalArgumentException("SegmentoReta:iv");
         }
     }
@@ -31,7 +31,7 @@ public class SegmentoReta {
      * @param pontoB Ponto final do segmento de reta
      */
     public SegmentoReta(Ponto pontoA, Ponto pontoB) {
-        if (pontoA.getX() == pontoB.getX() && pontoA.getY() == pontoB.getY()) { //invariante da classe
+        if (pontoA.equals(pontoB)) { //invariante da classe
             throw new IllegalArgumentException("SegmentoReta:iv");
         }
         this.pontoA = pontoA;
@@ -108,7 +108,10 @@ public class SegmentoReta {
         // D = (Arota * Bsegmento) - (Brota * Aparede)
         double determinante = (Arota * Bparede) - (Brota * Aparede);
 
-        if (determinante == 0) {
+        // determinante == 0 ?
+        // considera-se que dois double d e g são iguais se |d-g|<1e-9
+        // determinante == 0 se:
+        if (Math.abs(determinante) < 1e-9) {
             return null;
         } else {
             //Cálculamos o X e o Y do ponto em que intersetam

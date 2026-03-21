@@ -51,6 +51,20 @@ public class Ponto {
         return new Ponto(this.getX() + b.getX(), this.getY() + b.getY());
     }
 
+    /**
+     * método equals para verificar se dois pontos são iguais usando a noção de que dois pontos são iguais se as suas coordenadas double são iguais.
+     * considera-se que dois double d e g são iguais se |d-g|<1e-9
+     * @param o objeto (ponto) com o qual queremos comparar o ponto atual.
+     * @return true se forem iguais e false se forem diferentes.
+     */
+    @Override //escrevemos em cima do equals da classe object.
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Ponto)) return false; // se o objeto n for um ponto --> false
+        Ponto p = (Ponto) o; //fazemos cast para ponto, caso seja um ponto
+        // considera-se que dois double d e g são iguais se |d-g| < 1e-9
+        return Math.abs(this.x - p.x) < 1e-9 && Math.abs(this.y - p.y) < 1e-9;}
+
     public double distanciaPontos(Ponto p) {
         return Math.sqrt(Math.pow(this.x - p.x, 2) + Math.pow(this.y - p.y, 2));
     }

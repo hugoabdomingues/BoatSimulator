@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -169,5 +171,34 @@ public class SegmentoRetaTest {
         SegmentoReta sr = new SegmentoReta(new Ponto(4, 4), new Ponto(6, 6));
         Vetor v = new Vetor(new Ponto(2, 2)); // O vetor aponta para cima no eixo Y, nunca toca no segmento
         assertNull(sr.intersect(v));
+    }
+
+    /**
+     * Teste 1 do intersectRota
+     */
+    @Test
+    public void test1IntersectRota () {
+        Ponto[] pontosRota = new Ponto[2];
+        //segmento de reta horizontal no eixo do X
+        pontosRota[0] = new Ponto(0,0);
+        pontosRota[1] = new Ponto(4,0);
+        Route rota = new Route(pontosRota);
+        //segmento de reta paralelo à rota, mas não se tocam, logo deve dar null
+        SegmentoReta parede = new SegmentoReta(new Ponto(0,2), new Ponto(4,2));
+        assertTrue(rota.intersecao(parede).isEmpty());
+    }
+    /**
+     * Teste 2 do intersectRota
+     */
+    @Test
+    public void test2IntersectRota () {
+        Ponto[] pontosRota =  {new Ponto(0,0), new Ponto(2,2),new Ponto(6,2), new Ponto(6,4), new Ponto(11,4)};
+        Route rota = new Route(pontosRota);
+        SegmentoReta parede = new SegmentoReta(new Ponto(2,1), new Ponto(9,6));
+        ArrayList<Ponto> pontosIntersecao = rota.intersecao(parede);
+        for (int i = 0; i < pontosIntersecao.size(); i++) {
+
+        }
+        assertEquals("(3.40,2.00) (6.00,3.86) (6.20,4.00)", rota.intersecao(parede).toString());
     }
 }
