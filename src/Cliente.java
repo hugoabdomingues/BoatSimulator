@@ -47,9 +47,13 @@ public class Cliente {
                 if (pontosIntersecao.isEmpty()) {
                     System.out.println("null");
                 } else {
+
                     for (int i = 0; i < pontosIntersecao.size(); i++) {
-                        System.out.printf(pontosIntersecao.get(i).toString() + " ");
+                        if (i > 0) System.out.print(" "); //para evitar um espaço a mais no fim
+                        System.out.print(pontosIntersecao.get(i).toString());
                     }
+                    System.out.println();
+
                 }
             } catch (IllegalArgumentException erroSegmento) {
                 System.out.println(erroSegmento.getMessage());

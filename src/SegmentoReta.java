@@ -138,7 +138,7 @@ public class SegmentoReta {
             double maxYRota = Math.max(this.pontoA.getY(), this.pontoB.getY());
 
             boolean dentroDaCaixaRota;
-            if (coordenadaX >= minXRota && coordenadaX <= maxXRota && coordenadaY >= minYRota && coordenadaY <= maxYRota){
+            if (coordenadaX >= minXRota - 1e-9 && coordenadaX <= maxXRota + 1e-9 && coordenadaY >= minYRota - 1e-9 && coordenadaY <= maxYRota + 1e-9){
                 dentroDaCaixaRota = true;
             } else dentroDaCaixaRota = false;
 
@@ -149,7 +149,7 @@ public class SegmentoReta {
             double maxYParede = Math.max(parede.getPontoA().getY(), parede.getPontoB().getY());
 
             boolean dentroDaCaixaParede;
-            if (coordenadaX >= minXParede && coordenadaX <= maxXParede && coordenadaY >= minYParede && coordenadaY <= maxYParede) {
+            if (coordenadaX >= minXParede - 1e-9 && coordenadaX <= maxXParede + 1e-9 && coordenadaY >= minYParede - 1e-9 && coordenadaY <= maxYParede + 1e-9) {
                 dentroDaCaixaParede = true;
             } else dentroDaCaixaParede = false;
 
