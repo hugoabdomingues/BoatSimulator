@@ -105,4 +105,29 @@ class RouteTest {
         ArrayList<Ponto> resultado = rota.intersecao(parede);
         assertEquals("(2.00,0.00)", resultado.getFirst().toString());
     }
+
+    @Test
+    public void test1GetPonto() {
+        //verifica que devolve o número correto de pontos
+        Ponto[] pontos = {new Ponto(0,0), new Ponto(1,1), new Ponto(2,2)};
+        Route rota = new Route(pontos);
+        assertEquals(3, rota.getPonto().length);
+    }
+
+    @Test
+    public void test2GetPonto() {
+        //verifica que os pontos devolvidos têm as coordenadas corretas
+        Ponto[] pontos = {new Ponto(1,2), new Ponto(3,4)};
+        Route rota = new Route(pontos);
+        assertEquals("(1.00,2.00)", rota.getPonto()[0].toString());
+        assertEquals("(3.00,4.00)", rota.getPonto()[1].toString());
+    }
+
+    @Test
+    public void test3GetPonto() {
+        //verifica o último ponto da rota
+        Ponto[] pontos = {new Ponto(0,0), new Ponto(2,2), new Ponto(5,3)};
+        Route rota = new Route(pontos);
+        assertEquals("(5.00,3.00)", rota.getPonto()[2].toString());
+    }
 }

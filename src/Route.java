@@ -53,10 +53,7 @@ public class Route {
         }
          return pontosintersecao;
     }
-    public double rotaLength () {
-        return (double)this.pontos.length /2;
 
-    }
     public Ponto[] getPonto (){
         return this.pontos;
     }

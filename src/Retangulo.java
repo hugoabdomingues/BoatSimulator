@@ -1,19 +1,30 @@
 /**
  * Classe que representa um Retângulo
  * @author Hugo_Domingues
- * @version 21-03-2026
+ * @version 23-03-2026
  * @inv Um Retângulo tem exatamente 4 vértices. Os retângulos têm os lados opostos iguais e as diagonais com o mesmo comprimento.
  */
 public class Retangulo extends Poligono{
 
     /**
-     * Construtor da classe retângulo
+     * Construtor público da classe retângulo (Usado pelo Cliente)
      * @param vertices vertices que cosntituem o retângulo
      */
     public Retangulo(Ponto[] vertices) {
+        // Chama o construtor secreto abaixo, definindo o erro como "Retangulo:iv"
+        this(vertices, "Retangulo:iv");
+    }
+
+    /**
+     * Construtor protegido (Usado pela classe filha Quadrado)
+     * @param vertices vertices que constituem o retângulo/quadrado
+     * @param mensagemErro mensagem de erro personalizada a lançar
+     */
+    protected Retangulo(Ponto[] vertices, String mensagemErro) {
         super(vertices);
+
         if (vertices.length != 4) {
-            throw new IllegalArgumentException("Retangulo:iv");
+            throw new IllegalArgumentException(mensagemErro);
         }
 
         //Os retângulos têm os lados opostos iguais e as diagonais com o mesmo comprimento.
@@ -31,10 +42,10 @@ public class Retangulo extends Poligono{
         double diagonal2 = vertices[1].distanciaPontos(vertices[3]);
 
         //se o lados opostos têm comprimento diferente OU as diagonais têm comprimento diferente --> não é um retângulo
-        if (!areEqual(comprimentoLado1, comprimentoLadoOposto1) || !areEqual(comprimentoLado2, comprimentoLadoOposto2) || !areEqual(diagonal1,diagonal2)) { //se lado-lado >= 0 --> não são iguais
-            throw new IllegalArgumentException("Retangulo:iv");
+        if (!areEqual(comprimentoLado1, comprimentoLadoOposto1) || !areEqual(comprimentoLado2, comprimentoLadoOposto2) || !areEqual(diagonal1,diagonal2)) {
+            // Lança o erro dinâmico (pode ser Retangulo:iv ou Quadrado:iv)
+            throw new IllegalArgumentException(mensagemErro);
         }
-
     }
 
     /**

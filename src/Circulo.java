@@ -3,7 +3,7 @@ import java.util.ArrayList;
 /**
  * Classe que representa um Círculo
  * @author Hugo_Domingues
- * @version 21-03-2026
+ * @version 22-03-2026
  * @inv Os círculos têm o raio maior que zero.
  */
 public class Circulo {
@@ -29,7 +29,7 @@ public class Circulo {
     /**
      * calcular se a rota interseta o circulo em algum ponto
      * @see "apontamentos no caderno"
-     * @param rota
+     * @param rota rota que vamos testar se colide com o nosso objeto
      * @return Arraylist com os pontos de interseção ou um Arraylist vazio, caso n haja interseção
      */
     public ArrayList<Ponto> intersectCirculo(Route rota) {
