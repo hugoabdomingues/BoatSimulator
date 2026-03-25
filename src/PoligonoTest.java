@@ -104,4 +104,35 @@ class PoligonoTest {
         assertEquals(0.0, resultado.get(0).getY(), 1e-9);
     }
 
+    //  para aceder ao método PROTECTED areEqual do Poligono:
+    private static class PoligonoTeste extends Poligono {
+        public PoligonoTeste() {
+            super(new Ponto[]{new Ponto(0,0), new Ponto(1,0), new Ponto(0,1)});
+        }
+        public boolean areEqualPublico(double a, double b) {
+            return areEqual(a, b);
+        }
+    }
+
+    /**
+     * Teste 1 areEqual:valores iguais--> true
+     */
+    @Test
+    public void test1AreEqual() {
+        PoligonoTeste p = new PoligonoTeste();
+        assertTrue(p.areEqualPublico(3.0, 3.0));
+    }
+
+
+
+    /**
+     * Teste 3 areEqual: valores diferentes--> false
+     */
+    @Test
+    public void test3AreEqual() {
+        PoligonoTeste p = new PoligonoTeste();
+        assertFalse(p.areEqualPublico(3.0, 4.0));
+    }
+
+
 }

@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class RetanguloTest {
@@ -25,10 +27,11 @@ class RetanguloTest {
 
     /**
      * teste 3 construtor --> losango: lados iguais mas diagonais diferentes, logo n é um retangulo
+     * paralelogramo
      */
     @Test
     public void test3ConstrutorRetangulo() {
-        Ponto[] vertices = {new Ponto(0,1), new Ponto(1,0), new Ponto(0,-1), new Ponto(-1,0)};
+        Ponto[] vertices = {new Ponto(0,0), new Ponto(3,0), new Ponto(4,2), new Ponto(1,2)};
         Exception erro = assertThrows(IllegalArgumentException.class, () -> new Retangulo(vertices));
         assertEquals("Retangulo:iv", erro.getMessage());
     }
@@ -97,8 +100,10 @@ class RetanguloTest {
         Retangulo r = new Retangulo(vertices);
         Ponto[] pontosRota = {new Ponto(-1,0), new Ponto(1,0)};
         Route rota = new Route(pontosRota);
-        assertEquals(1, r.intersect(rota).size());
-        assertEquals("(0.00,0.00)", r.intersect(rota).get(0).toString());
+        ArrayList<Ponto> resultado = r.intersect(rota);
+        assertEquals(1, resultado.size());
+        assertEquals(0.0, resultado.get(0).getX(), 1e-9);
+        assertEquals(0.0, resultado.get(0).getY(), 1e-9);
     }
 
 }

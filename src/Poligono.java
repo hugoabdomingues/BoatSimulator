@@ -60,6 +60,17 @@ public class Poligono {
         return colisoes;
     }
 
-
+    /**
+     * calcular se dois comprimentos são inguais
+     * PROTECTED: só a própria classe e subclasses podem usar este método
+     * @param a comprimento 1
+     * @param b comprimento 2
+     * @return true se forem iguais, false se não forem iguais
+     */
+    protected boolean areEqual (double a, double b) {
+        return Math.abs(a - b) < 1e-9;
+    }
 
 }
+
+

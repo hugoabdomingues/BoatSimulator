@@ -4,10 +4,11 @@
  * @version 23-03-2026
  * @inv Um Retângulo tem exatamente 4 vértices. Os retângulos têm os lados opostos iguais e as diagonais com o mesmo comprimento.
  */
-public class Retangulo extends Poligono{
+public class Retangulo extends Poligono {
 
     /**
      * Construtor público da classe retângulo (Usado pelo Cliente)
+     *
      * @param vertices vertices que cosntituem o retângulo
      */
     public Retangulo(Ponto[] vertices) {
@@ -17,7 +18,8 @@ public class Retangulo extends Poligono{
 
     /**
      * Construtor protegido (Usado pela classe filha Quadrado)
-     * @param vertices vertices que constituem o retângulo/quadrado
+     *
+     * @param vertices     vertices que constituem o retângulo/quadrado
      * @param mensagemErro mensagem de erro personalizada a lançar
      */
     protected Retangulo(Ponto[] vertices, String mensagemErro) {
@@ -42,20 +44,11 @@ public class Retangulo extends Poligono{
         double diagonal2 = vertices[1].distanciaPontos(vertices[3]);
 
         //se o lados opostos têm comprimento diferente OU as diagonais têm comprimento diferente --> não é um retângulo
-        if (!areEqual(comprimentoLado1, comprimentoLadoOposto1) || !areEqual(comprimentoLado2, comprimentoLadoOposto2) || !areEqual(diagonal1,diagonal2)) {
+        if (!areEqual(comprimentoLado1, comprimentoLadoOposto1) || !areEqual(comprimentoLado2, comprimentoLadoOposto2) || !areEqual(diagonal1, diagonal2)) {
             // Lança o erro dinâmico (pode ser Retangulo:iv ou Quadrado:iv)
             throw new IllegalArgumentException(mensagemErro);
         }
     }
-
-    /**
-     * calcular se dois comprimentos são inguais
-     * @param a comprimento 1
-     * @param b comprimento 2
-     * @return true se forem iguais, false se não forem iguais
-     */
-    public boolean areEqual (double a, double b) {
-        return Math.abs(a - b) < 1e-9;
-    }
-
 }
+
+

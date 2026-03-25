@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Classe que representa o autopiloto
  * @author Hugo_Domingues
- * @version 08-03-2026
+ * @version 25-03-2026
  * @inv pontoA não pode ser igual ao pontoB
  */
 class AutoPilotTest {
@@ -24,7 +24,7 @@ class AutoPilotTest {
     @Test
     public void teste2Construtor () {
         Exception erro = assertThrows(IllegalArgumentException.class, () -> new AutoPilot(new Ponto(2,2),new Ponto(2,2)));
-        assertEquals("SegmentoReta:iv", erro.getMessage());
+        assertEquals("AutoPilot:iv", erro.getMessage());
     }
     /**
      * teste do construtor
@@ -36,33 +36,28 @@ class AutoPilotTest {
     }
 
     /**
-     * Teste 1 do time
+     * teste 1 do time
      */
     @Test
     public void test1Time () {
-        Vetor windspeed = new Vetor(1,1);
-        double linearSpeed = 0.283;
-        assertEquals(5.00, new AutoPilot(new Ponto(2,2), new Ponto(2,4)).time(windspeed,linearSpeed), 0.01); //tolerância = delta = 0.01 = 1e-2
+        AutoPilot autopilot = new AutoPilot(new Ponto(3,2),new Ponto(3,4));
+        assertEquals(5.00, autopilot.time(0.4),1e-2);
     }
     /**
-     * Teste 2 do time
+     * teste 2 do time
      */
     @Test
     public void test2Time () {
-        Vetor windspeed = new Vetor(1,1);
-        double linearSpeed = 0.632;
-        assertEquals(5.00, new AutoPilot(new Ponto(2,4), new Ponto(2,2)).time(windspeed,linearSpeed), 0.01); //tolerância = delta = 0.01 = 1e-2
+        AutoPilot autopilot = new AutoPilot(new Ponto(3,4),new Ponto(3,2));
+        assertEquals(5.00, autopilot.time(0.4),1e-2);
     }
-
     /**
-     * Teste 3 do time
+     * teste 3 do time
      */
     @Test
     public void test3Time () {
-        //vento contra --> demora mto mais tempo
-        Vetor windspeed = new Vetor(-5,0);
-        double linearSpeed = 0.283;
-        assertEquals(49.47, new AutoPilot(new Ponto(1,0), new Ponto(10,0)).time(windspeed,linearSpeed), 0.1);//tolerância = delta = 0.01 = 1e-2
+        AutoPilot autopilot = new AutoPilot(new Ponto(3,2),new Ponto(3,4));
+        assertEquals(5.00, autopilot.time(0.4),1e-2);
     }
 
     /**
@@ -70,28 +65,40 @@ class AutoPilotTest {
      */
     @Test
     public void test1Speed () {
-        Vetor windspeed = new Vetor(1,1);
-        AutoPilot autoPilot = new AutoPilot(new Ponto(2,2), new Ponto(2,4));
-        assertEquals("[-0.20,0.20]", autoPilot.speed(windspeed, 5).toString());
+        Vetor w = new Vetor(0.2,0.2);
+        AutoPilot autoPilot = new AutoPilot(new Ponto(3,2), new Ponto(3,4));
+        assertEquals("[-0.20,0.20]", autoPilot.speed(w, 5).toString());
     }
     /**
-     * teste 1 do metodo speed
+     * Teste 2
+     * Sem vento (Vento = 0,0). O avião só precisa de ir em frente.
+     * Rota de (0,0) a (10,0) em 2 segundos -> Velocidade solo = (5,0)
      */
     @Test
-    public void test2Speed () {
-        Vetor windspeed = new Vetor(1,1);
-        AutoPilot autoPilot = new AutoPilot(new Ponto(2,4), new Ponto(2,2));
-        assertEquals("[-0.20,-0.60]", autoPilot.speed(windspeed, 5).toString());
+    public void test2Speed() {
+        AutoPilot autoPilot = new AutoPilot(new Ponto(5, 0), new Ponto(10, 0));
+        Vetor w = new Vetor(-2, 0); // Vento a empurrar para trás (temos de compensar com trabalho do motor para chegarmos ao ponto (10,0) num segundo
+        double t = 1.0;
+
+        Vetor velocidadeAviao = autoPilot.speed(w, t);
+
+        assertEquals(7.00, velocidadeAviao.getX(), 1e-2);
+        assertEquals(0.00, velocidadeAviao.getY(), 1e-2);
     }
     /**
-     * teste 1 do metodo speed
+     * teste 3 do metodo speed
+     * vento a favor do avião
      */
     @Test
     public void test3Speed () {
-        //vento contra o avião
-        Vetor windspeed = new Vetor(-5,0);
-        AutoPilot autoPilot = new AutoPilot(new Ponto(1,0), new Ponto(10,0));
-        assertEquals("[0.28,0.00]", autoPilot.speed(windspeed, 49.47).toString());
+        AutoPilot autoPilot = new AutoPilot(new Ponto(5, 5), new Ponto(10, 10));
+        Vetor w = new Vetor(3, 3); // Vento a empurrar para trás (temos de compensar com trabalho do motor para chegarmos ao ponto (10,0) num segundo
+        double t = 1.0;
+
+        Vetor velocidadeAviao = autoPilot.speed(w, t);
+
+        assertEquals(2.00, velocidadeAviao.getX(), 1e-2);
+        assertEquals(2.00, velocidadeAviao.getY(), 1e-2);
     }
 
 
