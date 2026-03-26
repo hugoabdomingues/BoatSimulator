@@ -74,7 +74,7 @@ public class Route {
     public Ponto pontoDaRotaNoTempoT(double vl, double t) {
         // distancia = v * t
         double distanciaRestante = vl * t;
-        for (int i = 0; i < this.pontosRota.length; i++) {
+        for (int i = 0; i < this.pontosRota.length-1; i++) {
 
             double distanciaSegmento = this.pontosRota[i].distanciaPontos(this.pontosRota[i+1]);
             if (Math.abs(distanciaRestante - distanciaSegmento) < 1e-9) { //se forem iguais encontrámos o ponto
@@ -96,11 +96,8 @@ public class Route {
                 //caso a distância restante seja maior que a distância do segmento, subtraímos a distância do segmento à restante e o loop continua
                 distanciaRestante = distanciaRestante - distanciaSegmento;
             }
-
         }
-
-
+        return null;
     }
-
 }
 
