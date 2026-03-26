@@ -34,7 +34,7 @@ public class Circulo {
      */
     public ArrayList<Ponto> intersectCirculo(Route rota) {
         ArrayList<Ponto> colisoes = new ArrayList<>();
-        Ponto[] pontosRota = rota.getPonto();
+        Ponto[] pontosRota = rota.getPontos();
 
         for (int i = 0; i < pontosRota.length - 1; i++) {
             //coordenadas do ponto A e B do segmento atual da rota

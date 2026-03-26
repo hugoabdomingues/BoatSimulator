@@ -37,7 +37,7 @@ public class Poligono {
      */
     public ArrayList<Ponto> intersect(Route rota) {
         ArrayList<Ponto> colisoes = new ArrayList<>();
-        Ponto[] pontosRota = rota.getPonto();
+        Ponto[] pontosRota = rota.getPontos();
 
         //O loop de fora é para vermos segmento a segmento se este bate nalgum poligono. O carro faz o Segmento 1, depois o Segmento 2, depois o Segmento 3.
         for (int i = 0; i < pontosRota.length - 1; i++) {

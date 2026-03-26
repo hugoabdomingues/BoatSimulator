@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.IllegalFormatException;
 
 /**
  * Classe que representa a rota
@@ -8,7 +7,7 @@ import java.util.IllegalFormatException;
  * @inv uma rota tem pelo menos 2 pontos
  */
 public class Route {
-    private Ponto[] pontos;
+    private Ponto[] pontosRota;
 
     /**
      * Construtor da Rota
@@ -20,7 +19,7 @@ public class Route {
             throw new IllegalArgumentException("Rota:iv");
         }
 
-        this.pontos = pontos;
+        this.pontosRota = pontos;
     }
 
     /**
@@ -29,8 +28,8 @@ public class Route {
      */
     public double comprimentoTotal () {
         double comprimento = 0;
-        for (int i = 0; i < this.pontos.length-1; i++) {
-            comprimento = comprimento + this.pontos[i].distanciaPontos(this.pontos[i + 1]);
+        for (int i = 0; i < this.pontosRota.length-1; i++) {
+            comprimento = comprimento + this.pontosRota[i].distanciaPontos(this.pontosRota[i + 1]);
         }
         return comprimento;
     }
@@ -43,9 +42,9 @@ public class Route {
     public ArrayList<Ponto> intersecao (SegmentoReta parede) {
         //array para armazenar os pontos de interseção entre os dois segmentos de reta testados (no caso em que estes se cruzam)
         ArrayList<Ponto> pontosintersecao = new ArrayList<>();
-        for (int i = 0; i < this.pontos.length-1; i++) {
+        for (int i = 0; i < this.pontosRota.length-1; i++) {
             //criamos o segmento de reta que constitui parte da rota (dois a distância entre dois pontos de cada vez) e que vamos verificar se este se cruza com o segmento de reta "parede" mais à frente..
-                SegmentoReta parteDaRota = new SegmentoReta(this.pontos[i], this.pontos[i+1]);
+                SegmentoReta parteDaRota = new SegmentoReta(this.pontosRota[i], this.pontosRota[i+1]);
                 Ponto pontoTestado = parteDaRota.intersectRotas(parede);
                 if (pontoTestado != null) {
                     pontosintersecao.add(pontoTestado);
@@ -54,10 +53,54 @@ public class Route {
          return pontosintersecao;
     }
 
-    public Ponto[] getPonto (){
-        return this.pontos;
+    /**
+     * getter/assessor dos pontos que constituem a rota
+     * @return array com todos os pontos da rota
+     */
+    public Ponto[] getPontos(){
+        return this.pontosRota;
     }
 
+    /**
+     * cálcular tempo que leva a percorrer a totalidade da rota
+     * @param vl velocidade linear dada pelo input
+     * @return tempo que leva a percorrer a rota
+     */
+    public double tempoTotalRota(double vl) {
+        // t = distancia / velocidade
+        return comprimentoTotal()/vl;
+    }
+
+    public Ponto pontoDaRotaNoTempoT(double vl, double t) {
+        // distancia = v * t
+        double distanciaRestante = vl * t;
+        for (int i = 0; i < this.pontosRota.length; i++) {
+
+            double distanciaSegmento = this.pontosRota[i].distanciaPontos(this.pontosRota[i+1]);
+            if (Math.abs(distanciaRestante - distanciaSegmento) < 1e-9) { //se forem iguais encontrámos o ponto
+                return pontosRota[i+1];
+            } else if (distanciaRestante < distanciaSegmento) {
+                //percentagem do segmento que temos de percorrer para encontrar o ponto
+                double percentagemDistanciaPorPercorrer = distanciaRestante / distanciaSegmento;
+
+                //vetor AB = B - A -->d istancia do segmento atual
+                Vetor AB = new Vetor(pontosRota[i+1]).sub(new Vetor(pontosRota[i]));
+
+                //multiplicamos pela percentagem da distância que falta percorrer e temos a distância de A até o Ponto pontoDaRotaNoTempoT
+                Vetor AatePontoT = AB.mult(percentagemDistanciaPorPercorrer);
+
+                //finalmente usamos a função move() para irmos do ponto A até ao ponto pontoDaRotaNoTempoT
+                return this.pontosRota[i].move(AatePontoT);
+
+            } else {
+                //caso a distância restante seja maior que a distância do segmento, subtraímos a distância do segmento à restante e o loop continua
+                distanciaRestante = distanciaRestante - distanciaSegmento;
+            }
+
+        }
+
+
+    }
 
 }
 
