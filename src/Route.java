@@ -71,6 +71,13 @@ public class Route {
         return comprimentoTotal()/vl;
     }
 
+    /**
+     *
+     * Dado um tempo t, temos de cálcular onde vai estar o avião quando no tempo t
+     * @param vl velocidade produzida pela força dos motores
+     * @param t tempo dado
+     * @return ponto em que o avião se encontra no momento t.
+     */
     public Ponto pontoDaRotaNoTempoT(double vl, double t) {
         // distancia = v * t
         double distanciaRestante = vl * t;
@@ -78,13 +85,13 @@ public class Route {
 
             double distanciaSegmento = this.pontosRota[i].distanciaPontos(this.pontosRota[i+1]);
             if (Math.abs(distanciaRestante - distanciaSegmento) < 1e-9) { //se forem iguais encontrámos o ponto
-                return pontosRota[i+1];
+                return this.pontosRota[i+1];
             } else if (distanciaRestante < distanciaSegmento) {
                 //percentagem do segmento que temos de percorrer para encontrar o ponto
                 double percentagemDistanciaPorPercorrer = distanciaRestante / distanciaSegmento;
 
                 //vetor AB = B - A -->d istancia do segmento atual
-                Vetor AB = new Vetor(pontosRota[i+1]).sub(new Vetor(pontosRota[i]));
+                Vetor AB = new Vetor(this.pontosRota[i+1]).sub(new Vetor(this.pontosRota[i]));
 
                 //multiplicamos pela percentagem da distância que falta percorrer e temos a distância de A até o Ponto pontoDaRotaNoTempoT
                 Vetor AatePontoT = AB.mult(percentagemDistanciaPorPercorrer);
@@ -99,5 +106,24 @@ public class Route {
         }
         return null;
     }
+
+
+    public String vetoresVelocidade (Vetor w, double vl) {
+
+        String vetoresV = "";
+        for (int i = 0; i < this.pontosRota.length-1; i++) {
+            AutoPilot autoPilot = new AutoPilot(this.pontosRota[i],this.pontosRota[i+1]);
+            double tempoDeAB = autoPilot.time(vl);
+
+            Vetor vetorVelocidade = autoPilot.speed(w,tempoDeAB);
+
+            vetoresV = vetoresV + vetorVelocidade.toString();
+
+        }
+        return vetoresV;
+    }
+
+
+
 }
 

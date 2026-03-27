@@ -11,20 +11,35 @@ public class Cliente {
 
     public static void main() {
         Scanner sc = new Scanner(System.in);
-        //Get start and finish points
-        Ponto start = new Ponto(sc.nextDouble(), sc.nextDouble());
-        Ponto finish = new Ponto(sc.nextDouble(), sc.nextDouble());
-        //Get wind speed and direction
-        Vetor wt = new Vetor(sc.nextDouble(), sc.nextDouble());
-        //Get linear speed
-        double s = sc.nextDouble();
-        sc.close();
-        //Setup auto pilot and compute:
-        // i) desired time to reach the finish point
-        // ii) vectorial speed required
-        AutoPilot ap = new AutoPilot(start, finish);
-        double t = ap.time(s);
-        IO.println(String.format("%.2f", t));
-        IO.println(ap.speed(wt, t));
+        //Primeira linha tem te conter um número par de números:
+        //metemos tudo numa string e dividimo-la
+        String linha1 = sc.nextLine();
+        String[] stringSplit = linha1.split(" ");
+        int numeroDeDoubles = stringSplit.length;
+        if (numeroDeDoubles % 2 != 0) { //se nao for par: erro
+            System.out.println("Rota:iv");
+        } else {
+            try {
+                //criamos um array com numero de indices = metade do numero de doubles que temos no input
+                Ponto[] pontosRota = new Ponto[numeroDeDoubles / 2];
+                for (int i = 0; i < numeroDeDoubles / 2; i = i + 2) {
+                    double coordenadaX = Double.parseDouble(stringSplit[i]);
+                    double coordenadaY = Double.parseDouble(stringSplit[i + 1]);
+                    Ponto pontoRotaAtual = new Ponto(coordenadaX, coordenadaY);
+                    pontosRota[i] = pontoRotaAtual;
+                }
+                Route rota = new Route(pontosRota);
+                //Get wind speed and direction
+                Vetor wt = new Vetor(sc.nextDouble(), sc.nextDouble());
+                //Get linear speed
+                double vl = sc.nextDouble();
+                sc.close();
+                System.out.printf("%.2f\n", rota.comprimentoTotal());
+
+
+            } catch (NumberFormatException erro) {
+                System.out.println("input inválido.");
+            }
+        }
     }
 }
