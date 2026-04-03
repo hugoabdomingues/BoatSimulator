@@ -64,7 +64,12 @@ public class Navegador {
         return null;
     }
 
-
+    /**
+     *
+     * @param w
+     * @param vl
+     * @return vetores velocidade
+     */
     public String vetoresVelocidade (Vetor w, double vl) {
         Ponto[] pontosRota = this.rota.getPontos();
 

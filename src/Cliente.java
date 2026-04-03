@@ -24,20 +24,22 @@ public class Cliente {
                 Ponto[] pontosRota = new Ponto[numeroDeDoubles / 2];
                 for (int i = 0; i < numeroDeDoubles / 2; i++) {
                     double coordenadaX = Double.parseDouble(stringSplit[i * 2]);
-                    double coordenadaY = Double.parseDouble(stringSplit[i + 1]);
+                    double coordenadaY = Double.parseDouble(stringSplit[(i * 2) + 1]);
                     Ponto pontoRotaAtual = new Ponto(coordenadaX, coordenadaY);
                     pontosRota[i] = pontoRotaAtual;
                 }
                 Route rota = new Route(pontosRota);
                 Navegador navegador = new Navegador(rota);
                 //Get wind speed and direction
-                Vetor wt = new Vetor(sc.nextDouble(), sc.nextDouble());
+                Vetor w = new Vetor(sc.nextDouble(), sc.nextDouble());
                 //Get linear speed
                 double vl = sc.nextDouble();
                 double t = sc.nextDouble();
                 sc.close();
                 System.out.printf("%.2f\n", rota.comprimentoTotal());
-
+                System.out.printf("%.2f\n", navegador.tempoTotalRota(vl));
+                System.out.println(navegador.pontoDaRotaNoTempoT(vl,t).toString());
+                System.out.println(navegador.vetoresVelocidade(w,vl));
 
             } catch (NumberFormatException erro) {
                 System.out.println("input inválido.");
