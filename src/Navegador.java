@@ -80,10 +80,11 @@ public class Navegador {
 
             Vetor vetorVelocidade = autoPilot.speed(w,tempoDeAB);
 
-            vetoresV = vetoresV + vetorVelocidade.toString();
+            vetoresV = vetoresV + vetorVelocidade.toString() + " ";
 
         }
-        return vetoresV;
+        //retiramos o espaço a mais no fim
+        return vetoresV.trim();
     }
 
 }
