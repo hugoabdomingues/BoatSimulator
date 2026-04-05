@@ -2,7 +2,7 @@
  * Classe que representa o navegador
  * Responsável pela navegação pela rota em tempo real
  * @author Hugo_Domingues
- * @version 03-04-2026
+ * @version 05-04-2026
  * @inv a rota tem de ser != de null
  */
 public class Navegador {
@@ -28,7 +28,6 @@ public class Navegador {
     }
 
     /**
-     *
      * Dado um tempo t, temos de cálcular onde vai estar o avião quando no tempo t
      * @param vl velocidade produzida pela força dos motores
      * @param t tempo dado
@@ -65,9 +64,9 @@ public class Navegador {
     }
 
     /**
-     *
-     * @param w
-     * @param vl
+     * lista de vetores velocidade do avião v, no formato [x,y]
+     * @param w velocidade do vento exercida no veículo
+     * @param vl velocidade linear (velocidade gerada pelos motores do veículo)
      * @return vetores velocidade
      */
     public String vetoresVelocidade (Vetor w, double vl) {
