@@ -61,6 +61,7 @@ public class Circulo {
             double vetorCAy = pontoAy - centroCy;
 
             // esta equação resulta de substituir P(t) = A + t*(B-A) na equação do círculo (ver caderno)
+            //nota: P(t) = A + t*(B-A) é a eq. paramétrica da reta, que é equivalente à y = mx + b, mas sem o problema em que m é infinito (quando m é vertical)
             // coeficientes da equação quadrática a*t² + b*t + c = 0
             //coeficiente a: vetorABx² + vetorABy²
             double a = Math.pow(vetorABx,2) + Math.pow(vetorABy,2);
@@ -69,10 +70,10 @@ public class Circulo {
             //coeficiente c: vetorCAx² + vetorCAy² - r²
             double c = Math.pow(vetorCAx,2) + Math.pow(vetorCAy,2) - Math.pow(raio,2);
 
-            // o discriminante (parte que está dentro da raíz quadrada) diz-nos quantas soluções existem:
-            // discriminante < 0 --> o segmento não toca o círculo
-            // discriminante = 0 --> o segmento é tangente (toca num ponto)
-            // discriminante > 0 --> o segmento atravessa o círculo (dois pontos)
+            //o discriminante (parte que está dentro da raíz quadrada) diz-nos quantas soluções existem:
+            //discriminante < 0 --> o segmento não toca o círculo
+            //discriminante = 0 --> o segmento é tangente (toca num ponto)
+            //discriminante > 0 --> o segmento atravessa o círculo (dois pontos)
         double discriminante = b * b - 4 * a * c;
 
         if (discriminante < -1e-9) {
@@ -80,22 +81,25 @@ public class Circulo {
                 continue;
         }
 
-            // corrige erros de arredondamento que podem dar discriminante ligeiramente negativo quando devia ser zero (caso tangente)
+        //corrige erros de arredondamento que podem dar discriminante ligeiramente negativo quando devia ser zero (caso tangente)
         discriminante = Math.max(0, discriminante);
 
-            // fórmula resolvente: t = (-b ± sqrt(discriminante)) / 2a
+        //fórmula resolvente: t = (-b +/- sqrt(discriminante)) / 2a
             // t representa a posição no segmento: t=0 é o ponto A, t=1 é o ponto B
+            // logo t é a percentagem do caminho percorrido neste segmento em que 0 = 0% e 1 = 100%
         double t1 = (-b - Math.sqrt(discriminante)) / (2 * a);
         double t2 = (-b + Math.sqrt(discriminante)) / (2 * a);
 
-            // só nos interessa t entre 0 e 1 — fora desse intervalo
+        //só nos interessa t entre 0 e 1, pois apenas os pontos onde t está entre 0 e 1 (ou seja, entre 0% e 100% da viagem) interessam.
             // a interseção acontece na reta infinita mas não no segmento
         if (t1 >= -1e-9 && t1 <= 1 + 1e-9) {
-                // calculamos o ponto de interseção a partir de P(t) = A + t*(B-A) !!!
+                // calculamos o ponto de interseção a partir de P(t) = A + t*(B-A)
+            //Agarramos nas coordenadas do ponto inicial (pontoAx), e somamos o vetor da direção multiplicado pela percentagem do caminho em que efetivamente interseta com o círculo (t)
                 colisoes.add(new Ponto(pontoAx + t1 * vetorABx, pontoAy + t1 * vetorABy));
         }
 
-            // só adicionamos t2 se for diferente de t1, ou seja, se o discriminante for POSITIVO (> 0) ... caso contrário t1 == t2 e estaríamos a adicionar o mesmo ponto duas vezes
+        // só adicionamos t2 se for diferente de t1, ou seja, se o discriminante for positivo (> 0) ... caso contrário t1 == t2 e estaríamos a adicionar o mesmo ponto duas vezes
+            //Se o discriminante for zero, o t1 e o t2 vão ter o mesmo valor. Se for negativo, é impossível
         if (Math.abs(discriminante) >= 1e-9 && t2 >= -1e-9 && t2 <= 1 + 1e-9) {
                 colisoes.add(new Ponto(pontoAx + t2 * vetorABx, pontoAy + t2 * vetorABy));
             }
