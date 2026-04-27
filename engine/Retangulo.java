@@ -8,7 +8,6 @@ public class Retangulo extends Poligono {
 
     /**
      * Construtor público da classe retângulo (Usado pelo Cliente)
-     *
      * @param vertices vertices que cosntituem o retângulo
      */
     public Retangulo(Ponto[] vertices) {

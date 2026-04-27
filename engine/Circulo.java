@@ -13,7 +13,6 @@ public class Circulo {
 
     /**
      * Construtor do círculo
-     *
      * @param centro ponto do centro do círculo
      * @param raio   raio do círculo
      */
