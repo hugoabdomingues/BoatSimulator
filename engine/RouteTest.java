@@ -123,6 +123,9 @@ class RouteTest {
         assertEquals("(3.00,4.00)", rota.getPontos()[1].toString());
     }
 
+    /**
+     * getter
+     */
     @Test
     public void test3GetPonto() {
         //verifica o último ponto da rota
