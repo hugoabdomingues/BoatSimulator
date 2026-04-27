@@ -34,9 +34,5 @@ class MapaTest {
         mapa.tempo(0.5);
     }
 
-    @Test
-    public void testMostrarHitboxes() {
-        Mapa mapa = Mapa.getInstancia();
-        mapa.mostrarHitboxes();
-    }
+
 }

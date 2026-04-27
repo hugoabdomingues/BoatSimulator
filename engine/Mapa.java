@@ -57,12 +57,7 @@ public class Mapa {
         // TODO
     }
 
-    /**
-     * Alterna o estado de visibilidade das hitboxes.
-     */
-    public void mostrarHitboxes() {
-        // TODO
-    }
+
 
     /**
      * Cria e devolve o  estado atual do motor para o GUI
