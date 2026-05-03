@@ -19,8 +19,8 @@ public class Tempestade extends Obstaculo {
      */
     public Tempestade(String id, Ponto centro, double raio) {
         super(id); // Chama o construtor da superclasse Obstaculo
-
-        if (centro == null || raio <= 0) {
+        //Adicionei limite do raio do circulo
+        if (centro == null || raio <= 0 || raio >= 3) {
             throw new IllegalArgumentException("Tempestade: centro ou raio inválidos.");
         }
 
@@ -35,6 +35,6 @@ public class Tempestade extends Obstaculo {
      */
     @Override
     public ArrayList<Ponto> verificaColisao(Route rota) {
-        return new ArrayList<>(); //return vazio
+        return this.forma.intersectCirculo(rota);
     }
 }

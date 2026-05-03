@@ -69,7 +69,7 @@ class NavegadorTest {
     public void test1PontoDaRotaNoTempoT() {
         Ponto[] pontos = {new Ponto(0,0), new Ponto(10,0)};
         Navegador navegador = new Navegador(new Route(pontos));
-        assertEquals("(10.00,0.00)",navegador.pontoDaRotaNoTempoT(2,5).toString());
+        assertEquals("(10.00,0.00)",navegador.pontoDaRotaNoTempoT(new Vetor(0,1),2,5).toString());
     }
 
 
@@ -80,7 +80,7 @@ class NavegadorTest {
     public void test3pontoDaRotaNoTempoT() {
         Ponto[] pontos = {new Ponto(0,0), new Ponto(10,0)};
         Navegador navegador = new Navegador(new Route(pontos));
-        assertEquals(new Ponto(10,0), navegador.pontoDaRotaNoTempoT(2, 5));
+        assertEquals(new Ponto(10,0), navegador.pontoDaRotaNoTempoT(new Vetor(1,0),2, 5));
     }
 
     /**

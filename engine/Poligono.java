@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * @version 21-03-2026
  * @inv Um polígono tem pelo menos 3 vértices.
  */
-public class Poligono {
+public class Poligono{
     private Ponto[] vertices;
     /**
      * Construtor do Polígono.

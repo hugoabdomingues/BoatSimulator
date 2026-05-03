@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+//Mudei coisas aqui pois tinha erro ass:Renato
 class NavegacaoUpdateTest {
     @Test
     public void testCriacaoELeituraDoRecord() {
@@ -14,7 +14,7 @@ class NavegacaoUpdateTest {
 
         Vetor correnteTeste = new Vetor(2.5, -1.0);
 
-        NavegacaoUpdate update = new NavegacaoUpdate(listaBarcos, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), correnteTeste, new ArrayList<>());
+        NavegacaoUpdate update = new NavegacaoUpdate(new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), correnteTeste, new ArrayList<>());
 
         assertNotNull(update);
         assertEquals(2, update.barcosAtivos().size());

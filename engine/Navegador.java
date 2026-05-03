@@ -63,13 +63,14 @@ public class Navegador {
         return null;
     }
 
+
     /**
      * lista de vetores velocidade do avião v, no formato [x,y]
-     * @param w velocidade do vento exercida no veículo
+     * @param corrente velocidade da corrente exercida no barco
      * @param vl velocidade linear (velocidade gerada pelos motores do veículo)
      * @return vetores velocidade
      */
-    public String vetoresVelocidade (Vetor w, double vl) {
+    public String vetoresVelocidade (Vetor corrente, double vl) {
         Ponto[] pontosRota = this.rota.getPontos();
 
         String vetoresV = "";
@@ -77,7 +78,7 @@ public class Navegador {
             AutoPilot autoPilot = new AutoPilot(pontosRota[i], pontosRota[i+1]);
             double tempoDeAB = autoPilot.time(vl);
 
-            Vetor vetorVelocidade = autoPilot.speed(w,tempoDeAB);
+            Vetor vetorVelocidade = autoPilot.speed(corrente,tempoDeAB);
 
             vetoresV = vetoresV + vetorVelocidade.toString() + " ";
 

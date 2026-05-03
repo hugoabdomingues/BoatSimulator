@@ -25,12 +25,9 @@ public class Ilha extends Obstaculo {
         this.forma = new Poligono(pontos);
     }
 
-    /**
-     * Verifica a colisão da rota com as arestas do polígono da ilha
-     * @param rota Rota a verificar
-     * @return Lista de pontos de interseção entre a rota e a ilha
-     */
+
     @Override
     public ArrayList<Ponto> verificaColisao(Route rota) {
-        return new ArrayList<>();    }
+        return this.forma.intersect(rota);
+    }
 }

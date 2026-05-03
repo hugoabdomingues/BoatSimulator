@@ -38,13 +38,13 @@ public class AutoPilot {
 
     /**
      * cálcula o vetor velocidade
-     * @param w deslocamento do avião executado pelo vento
+     * @param corrente deslocamento do barco executado pela corrente
      * @param t tempo calculado no metodo time.
      * @return vetor velocidade do avião
      */
-    public Vetor speed (Vetor w, double t) {
-        // v = (r / t) - w              (fórmula retirada do enunciado)
-        return this.deslocamento.mult(1/t).sub(w);
+    public Vetor speed (Vetor corrente, double t) {
+        // v = (r / t) - corrente              (fórmula retirada do enunciado)
+        return this.deslocamento.mult(1/t).sub(corrente);
     }
 
 
