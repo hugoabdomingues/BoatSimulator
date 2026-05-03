@@ -11,6 +11,6 @@ import java.util.List;
  * @param corrente Vetor da corrente marítima atual
  * @param barcosFila Lista de informação visual dos barcos a aguardar nos portos
  */
-public record NavegacaoUpdate(List<String> barcosAtivos, List<Ponto> localizacaoBarcosAtivos, List<Boolean> mostrarHitboxNavio, List<Obstaculo> obstaculos, Vetor corrente, List<String> barcosFila) {
+public record NavegacaoUpdate(List<String> barcosAtivos, List<Ponto> localizacaoBarcosAtivos, List<Obstaculo> obstaculos, Vetor corrente, List<String> barcosFila) {
 }
 

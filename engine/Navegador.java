@@ -33,7 +33,7 @@ public class Navegador {
      * @param t tempo dado
      * @return ponto em que o avião se encontra no momento t.
      */
-    public Ponto pontoDaRotaNoTempoT(double vl, double t) {
+    public Ponto pontoDaRotaNoTempoT(Vetor corrente,double vl, double t) {
         Ponto[] pontosRota = this.rota.getPontos();
         // distancia = v * t
         double distanciaRestante = vl * t;
