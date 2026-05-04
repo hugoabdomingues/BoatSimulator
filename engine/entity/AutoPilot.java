@@ -7,7 +7,7 @@ import geometria.Vetor;
  * Classe que representa o autopiloto
  * @author Hugo_Domingues
  * @version 25-03-2026
- * @inv pontoA não pode ser igual ao pontoB
+ * @inv pontoA não pode ser igual ao pontoB d
  */
 public class AutoPilot {
 
