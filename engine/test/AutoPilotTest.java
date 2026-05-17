@@ -9,7 +9,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Classe que representa o autopiloto
- * @author Hugo_Domingues
+ * @author Ana Sofia Almeida 68747
+ * @author Renato Chumbinho 84804
+ * @author Hugo Domingues 86128
  * @version 25-03-2026
  * @inv pontoA não pode ser igual ao pontoB
  */

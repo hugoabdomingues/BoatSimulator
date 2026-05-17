@@ -12,7 +12,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Classe teste do segmento de reta
- * @author Hugo_Domingues
+ * @author Ana Sofia Almeida 68747
+ * @author Renato Chumbinho 84804
+ * @author Hugo Domingues 86128
  * @version 07-03-2026
  * @inv O Segmento não pode ter os dois extremos no mesmo ponto.
  */

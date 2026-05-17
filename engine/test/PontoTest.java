@@ -7,7 +7,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 /**
  * Classe teste da classe ponto
- * @author Hugo_Domingues
+ * @author Ana Sofia Almeida 68747
+ * @author Renato Chumbinho 84804
+ * @author Hugo Domingues 86128
  * @version 01-03-2026
  * @inv O ponto é definido por um x e um y.
  */

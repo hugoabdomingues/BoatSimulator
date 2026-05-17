@@ -7,7 +7,9 @@ import java.util.ArrayList;
 
 /**
  * Classe que representa a rota
- * @author Hugo_Domingues
+ * @author Ana Sofia Almeida 68747
+ * @author Renato Chumbinho 84804
+ * @author Hugo Domingues 86128
  * @version 19-03-2026
  * @inv uma rota tem pelo menos 2 pontos
  */
@@ -27,7 +29,7 @@ public class Route {
     }
 
     /**
-     * cálcula o comprimento da rota na sua totalidade. Ou seja, a distância entre todos os pontos que cosntituem a rota.
+     * Cálcula o comprimento da rota na sua totalidade. Ou seja, a distância entre todos os pontos que cosntituem a rota.
      * @return o comprimento da rota
      */
     public double comprimentoTotal () {
@@ -58,7 +60,7 @@ public class Route {
     }
 
     /**
-     * getter/assessor dos pontos que constituem a rota
+     * Getter dos pontos que constituem a rota
      * @return array com todos os pontos da rota
      */
     public Ponto[] getPontos(){

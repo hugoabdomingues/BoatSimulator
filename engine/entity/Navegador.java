@@ -6,14 +6,19 @@ import geometria.Vetor;
 /**
  * Classe que representa o navegador
  * Responsável pela navegação pela rota em tempo real
- * @author Hugo_Domingues
+ * @author Ana Sofia Almeida 68747
+ * @author Renato Chumbinho 84804
+ * @author Hugo Domingues 86128
  * @version 05-04-2026
- * @inv a rota tem de ser != de null
  */
 public class Navegador {
-
     private Route rota;
 
+    /**
+     * Construtor do Navegador
+     * @param rota Route
+     * @inv a rota tem de ser != de null
+     */
     public Navegador (Route rota) {
         if (rota == null){
             throw new IllegalArgumentException("entity.Navegador:iv");
@@ -33,39 +38,61 @@ public class Navegador {
     }
 
     /**
-     * Dado um tempo t, temos de cálcular onde vai estar o avião quando no tempo t
-     * @param vl velocidade produzida pela força dos motores
-     * @param t tempo dado
-     * @return ponto em que o avião se encontra no momento t.
+     * Dado um tempo t, calcula onde o barco se encontra, compensando a corrente para manter a velocidade linear constante.
+     * @param vl double, velocidade linear que deve ser mantida na rota
+     * @param t double, tempo dado
+     * @param corrente Vetor, velocidade da corrente exercida no barco
+     * @return ponto em que o barco se encontra no momento t
      */
-    public Ponto pontoDaRotaNoTempoT(double vl, double t) {
+    public Ponto pontoDaRotaNoTempoT(double vl, double t, Vetor corrente) {
+
         Ponto[] pontosRota = this.rota.getPontos();
-        // distancia = v * t
         double distanciaRestante = vl * t;
+
         for (int i = 0; i < pontosRota.length-1; i++) {
+            Ponto pontoA = pontosRota[i];
+            Ponto pontoB = pontosRota[i+1];
 
-            double distanciaSegmento = pontosRota[i].distanciaPontos(pontosRota[i+1]);
-            if (Math.abs(distanciaRestante - distanciaSegmento) < 1e-9) { //se forem iguais encontrámos o ponto
-                return pontosRota[i+1];
+
+            if (distanciaRestante < 1e-9) {
+                return pontoA;
+            }
+
+            double distanciaSegmento = pontoA.distanciaPontos(pontoB);
+            if (Math.abs(distanciaRestante - distanciaSegmento) < 1e-9) {
+                return pontoB;
             } else if (distanciaRestante < distanciaSegmento) {
-                //percentagem do segmento que temos de percorrer para encontrar o ponto
                 double percentagemDistanciaPorPercorrer = distanciaRestante / distanciaSegmento;
-
-                //vetor AB = B - A -->distancia do segmento atual
-                Vetor AB = new Vetor(pontosRota[i+1]).sub(new Vetor(pontosRota[i]));
-
-                //multiplicamos pela percentagem da distância que falta percorrer e temos a distância de A até o geometria.Ponto pontoDaRotaNoTempoT
-                Vetor AatePontoT = AB.mult(percentagemDistanciaPorPercorrer);
-
-                //finalmente usamos a função move() para irmos do ponto A até ao ponto pontoDaRotaNoTempoT
-                return pontosRota[i].move(AatePontoT);
-
+                return pontoSegmentoCorrente(pontoA, pontoB, percentagemDistanciaPorPercorrer, vl, corrente);
             } else {
-                //caso a distância restante seja maior que a distância do segmento, subtraímos a distância do segmento à restante e o loop continua
                 distanciaRestante = distanciaRestante - distanciaSegmento;
             }
         }
         return null;
+    }
+    /**
+     * Calcula a posição no segmento usando uma velocidade vetorial que compensa a corrente.
+     * @param pontoA Ponto
+     * @param pontoB Ponto
+     * @param percentDistPercorrer double
+     * @param vl double
+     * @param corrente Vetor
+     * @return Ponto
+     */
+    private Ponto pontoSegmentoCorrente(Ponto pontoA, Ponto pontoB, double percentDistPercorrer, double vl, Vetor corrente) {
+        Vetor deslocamentoSegmento = new Vetor(pontoB).sub(new Vetor(pontoA));
+
+        if (corrente == null) {
+            Vetor AtePontoT = deslocamentoSegmento.mult(percentDistPercorrer);
+            return pontoA.move(AtePontoT);
+        }
+
+        AutoPilot piloto = new AutoPilot(pontoA, pontoB);
+        double tempoDeAB = piloto.time(vl);
+        Vetor velocidadeReal = piloto.speed(corrente, tempoDeAB).add(corrente);
+        Vetor AtePontoT = velocidadeReal.mult(tempoDeAB * percentDistPercorrer);
+
+        return pontoA.move(AtePontoT);
     }
 
 

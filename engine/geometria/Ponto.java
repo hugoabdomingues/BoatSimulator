@@ -1,8 +1,12 @@
 package geometria;
 
+import java.util.Objects;
+
 /**
  * Classe que representa um ponto no plano xOy
- * @author Hugo_Domingues
+ * @author Ana Sofia Almeida 68747
+ * @author Renato Chumbinho 84804
+ * @author Hugo Domingues 86128
  * @version 15-03-2026
  * @inv O ponto é definido por um x e um y.
  */
@@ -28,6 +32,10 @@ public class Ponto {
     }
 
 
+    @Override
+    public int hashCode(){
+        return Objects.hash(Math.round(this.x * 1e-9),Math.round(this.y * 1e-9));
+    }
     /**
      * Assessor/getter da coordenada y do ponto.
      * @return valor do y do ponto
@@ -66,6 +74,8 @@ public class Ponto {
         Ponto p = (Ponto) o; //fazemos cast para ponto, caso seja um ponto
         // considera-se que dois double d e g são iguais se |d-g| < 1e-9
         return Math.abs(this.x - p.x) < 1e-9 && Math.abs(this.y - p.y) < 1e-9;}
+
+
 
     /**
      * cálcular a distância entre dois pontos

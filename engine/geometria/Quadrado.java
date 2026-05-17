@@ -1,10 +1,12 @@
 package geometria;
 
 /**
- * Classe que representa um geometria.Quadrado
- * @author Hugo_Domingues
+ * Classe que representa um Quadrado
+ * @author Ana Sofia Almeida 68747
+ * @author Renato Chumbinho 84804
+ * @author Hugo Domingues 86128
  * @version 21-03-2026
- * @inv Um geometria.Quadrado tem exatamente 4 vértices. Os quadrados têm todos os lados iguais E as diagonais com o mesmo comprimento.
+ * @inv Um Quadrado tem exatamente 4 vértices. Os quadrados têm todos os lados iguais E as diagonais com o mesmo comprimento.
  */
 public class Quadrado extends Retangulo {
     /**

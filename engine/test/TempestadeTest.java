@@ -9,6 +9,11 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @author Ana Sofia Almeida 68747
+ * @author Renato Chumbinho 84804
+ * @author Hugo Domingues 86128
+ */
 class TempestadeTest {
     @Test
     public void testVerificaColisao() {

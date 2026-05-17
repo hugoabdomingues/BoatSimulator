@@ -8,6 +8,11 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @author Ana Sofia Almeida 68747
+ * @author Renato Chumbinho 84804
+ * @author Hugo Domingues 86128
+ */
 public class PortoTest {
 
     @Test
@@ -35,7 +40,7 @@ public class PortoTest {
 
         p.agendarBarco("T=10, B, 1");
 
-        Barco resultado = p.verificarFila(10.0, nav);
+        Barco resultado = p.verificarFila(10.0);
 
         assertNotNull(resultado, "O barco deve ser criado");
         assertEquals("B1", resultado.getCodigo(), "O ID do barco deve ser 'B1'");

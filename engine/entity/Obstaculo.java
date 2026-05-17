@@ -6,9 +6,10 @@ import java.util.ArrayList;
 
 /**
  * Classe abstrata que representa um obstáculo genérico no mapa.
- * @author Hugo Domingues, Ana Sofia, Renato Chumbinho
+ * @author Ana Sofia Almeida 68747
+ * @author Renato Chumbinho 84804
+ * @author Hugo Domingues 86128
  * @version 27-04-2026
- * @inv id != null && não vazio
  */
 public abstract class Obstaculo {
 
@@ -16,7 +17,8 @@ public abstract class Obstaculo {
 
     /**
      * Construtor da classe entity.Obstaculo
-     * @param id ID único/ nome do obstáculo
+     * @param id String,  ID único/ nome do obstáculo
+     * @inv id != null && não vazio
      */
     public Obstaculo(String id) {
         if (id == null || id.isEmpty()) {

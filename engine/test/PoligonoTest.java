@@ -12,7 +12,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class PoligonoTest {
     /**
      * menos de 3 vértices --> invariante violada
-     */
+      * @author Ana Sofia Almeida 68747
+ * @author Renato Chumbinho 84804
+ * @author Hugo Domingues 86128
+ */
     @Test
     public void test1ConstrutorPoligono() {
         Ponto[] vertices = {new Ponto(0,0), new Ponto(1,1)};
@@ -109,7 +112,7 @@ class PoligonoTest {
         assertEquals(0.0, resultado.get(0).getY(), 1e-9);
     }
 
-    //  para aceder ao método PROTECTED areEqual do geometria.Poligono:
+    //  para aceder ao metodo PROTECTED areEqual do Poligono:
     private static class PoligonoTeste extends Poligono {
         public PoligonoTeste() {
             super(new Ponto[]{new Ponto(0,0), new Ponto(1,0), new Ponto(0,1)});

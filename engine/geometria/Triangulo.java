@@ -2,7 +2,9 @@ package geometria;
 
 /**
  * Classe que representa um Triângulo
- * @author Hugo_Domingues
+ * @author Ana Sofia Almeida 68747
+ * @author Renato Chumbinho 84804
+ * @author Hugo Domingues 86128
  * @version 21-03-2026
  * @inv Um triângulo tem exatamente 3 vértices. Estes vértices não podem ser colineares.
  */

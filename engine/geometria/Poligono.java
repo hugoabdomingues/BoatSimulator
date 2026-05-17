@@ -6,7 +6,9 @@ import java.util.ArrayList;
 
 /**
  * Classe que representa um polígono
- * @author Hugo_Domingues
+ * @author Ana Sofia Almeida 68747
+ * @author Renato Chumbinho 84804
+ * @author Hugo Domingues 86128
  * @version 21-03-2026
  * @inv Um polígono tem pelo menos 3 vértices.
  */
@@ -65,13 +67,13 @@ public class Poligono{
     }
 
     /**
-     * calcular se dois comprimentos são inguais
-     * PROTECTED: só a própria classe e subclasses podem usar este método
+     * calcular se dois comprimentos são iguais
+     * PROTECTED: só a própria classe e subclasses podem usar este metodo
      * @param a comprimento 1
      * @param b comprimento 2
      * @return true se forem iguais, false se não forem iguais
      */
-    protected boolean areEqual (double a, double b) {
+    public boolean areEqual (double a, double b) {
         return Math.abs(a - b) < 1e-9;
     }
 

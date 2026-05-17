@@ -6,7 +6,9 @@ import java.util.ArrayList;
 
 /**
  * Classe que representa um Círculo
- * @author Hugo_Domingues
+ * @author Ana Sofia Almeida 68747
+ * @author Renato Chumbinho 84804
+ * @author Hugo Domingues 86128
  * @version 22-03-2026
  * @inv Os círculos têm o raio maior que zero.
  */
@@ -108,5 +110,13 @@ public class Circulo {
             }
         }
         return colisoes;
+    }
+
+    public Ponto getCentro() {
+        return this.centro;
+    }
+
+    public double getRaio() {
+        return this.raio;
     }
 }

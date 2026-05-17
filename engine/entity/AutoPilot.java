@@ -4,19 +4,21 @@ import geometria.Ponto;
 import geometria.Vetor;
 
 /**
- * Classe que representa o autopiloto
- * @author Hugo_Domingues
+ * Classe que representa o AutoPilot
+ * @author Ana Sofia Almeida 68747
+ * @author Renato Chumbinho 84804
+ * @author Hugo Domingues 86128
  * @version 25-03-2026
- * @inv pontoA não pode ser igual ao pontoB d
+ * @inv pontoA não pode ser igual ao pontoB
  */
 public class AutoPilot {
-
+//
     private Ponto pontoA;
     private Ponto pontoB;
     private Vetor deslocamento;
 
     /**
-     * Construtor da classe entity.AutoPilot
+     * Construtor da classe AutoPilot
      * @param a ponto de partida do avião
      * @param b ponto de chegada do avião
      */

@@ -1,6 +1,7 @@
 package entity;
 
 import geometria.Ponto;
+import entity.Barco;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,9 +10,10 @@ import java.util.PriorityQueue;
 /**
  *
  * Classe que representa o porto
- * @author G2_PL1
+ * @author Ana Sofia Almeida 68747
+ * @author Renato Chumbinho 84804
+ * @author Hugo Domingues 86128
  * Version 29-04-2026
- * @inv A localização e nome não podem ser nulos
  *
  */
 public class Porto {
@@ -21,9 +23,10 @@ public class Porto {
     private PriorityQueue<String> listaDeEspera;
 
     /**
-     *
+     *Construtor do Porto
      * @param nome Nome do porto
      * @param localizacao Localização do porto
+     * @inv A localização e nome não podem ser nulos
      */
     public Porto(String nome, Ponto localizacao) {
 
@@ -47,9 +50,9 @@ public class Porto {
     }
 
     /**
-     *
-     * @param tempoAtual Hora atual
-     * @return entity.Barco pronto a sair do porto
+     * Verifica a lista de espera do porto e instancia um novo Barco caso tenha chegado a hora da sua partida.
+     * @param tempoAtual O tempo ou hora atual da simulação
+     * @return O objeto Barco instanciado e pronto a navegar, ou null se não houver barcos prontos
      */
     public Barco verificarFila(double tempoAtual) {
 
@@ -82,8 +85,8 @@ public class Porto {
     }
 
     /**
-     *
-     * @return Nome do porto
+     * Getter do nome do porto.
+     * @return String
      */
     public String getNome(){
 
@@ -91,8 +94,8 @@ public class Porto {
     }
 
     /**
-     *
-     * @return Localização do entity.Porto
+     * Getter da localizacao do Porto
+     * @return Ponto
      */
     public Ponto getLocalizacao() {
 
@@ -100,8 +103,8 @@ public class Porto {
     }
 
     /**
-     *
-     * @return Lista de agendamentos do porto
+     * Getter da lista com os agendamentos (em formato de texto) dos barcos que aguardam partida.
+     * @return Lista de Strings com a informação dos barcos na fila
      */
     public List<String> getStringBarcosFila() {
 
@@ -109,8 +112,9 @@ public class Porto {
     }
 
     /**
-     *
-     * @param barco entity.Barco a ser agendado no porto
+     * Regista a entrada de um novo agendamento na lista de espera do porto, ordenando-o pela sua hora de partida.
+     * @param barco String com a informação de agendamento do barco
+     * @inv se a string for nula ou não seguir o formato esperado
      */
     public void agendarBarco(String barco) {
 

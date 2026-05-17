@@ -9,6 +9,11 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @author Ana Sofia Almeida 68747
+ * @author Renato Chumbinho 84804
+ * @author Hugo Domingues 86128
+ */
 class IlhaTest {
 
         @Test
@@ -22,7 +27,6 @@ class IlhaTest {
 
             ArrayList<Ponto> colisoes = ilha.verificaColisao(rotaQueAtravessa);
 
-            // Verificamos se detetou colisões (a lista não pode estar vazia)
             assertNotNull(colisoes, "A lista de colisões não deve ser nula.");
         }
     }

@@ -2,7 +2,9 @@ package geometria;
 
 /**
  * Classe que representa um vetor no plano.
- * @author Hugo_Domingues
+ * @author Ana Sofia Almeida 68747
+ * @author Renato Chumbinho 84804
+ * @author Hugo Domingues 86128
  * @version 20-03-2026
  * @inv modulo() > 0
  */

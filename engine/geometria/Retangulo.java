@@ -2,7 +2,9 @@ package geometria;
 
 /**
  * Classe que representa um Retângulo
- * @author Hugo_Domingues
+ * @author Ana Sofia Almeida 68747
+ * @author Renato Chumbinho 84804
+ * @author Hugo Domingues 86128
  * @version 23-03-2026
  * @inv Um Retângulo tem exatamente 4 vértices. Os retângulos têm os lados opostos iguais e as diagonais com o mesmo comprimento.
  */
@@ -19,8 +21,7 @@ public class Retangulo extends Poligono {
 
     /**
      * Construtor protegido (Usado pela classe filha geometria.Quadrado)
-     *
-     * @param vertices     vertices que constituem o retângulo/quadrado
+     * @param vertices vertices que constituem o retângulo/quadrado
      * @param mensagemErro mensagem de erro personalizada a lançar
      */
     protected Retangulo(Ponto[] vertices, String mensagemErro) {

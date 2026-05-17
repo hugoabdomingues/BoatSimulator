@@ -14,7 +14,10 @@ class QuadradoTest {
     /**
      * Construtor teste 1
      * quadrado válido
-     */
+      * @author Ana Sofia Almeida 68747
+ * @author Renato Chumbinho 84804
+ * @author Hugo Domingues 86128
+ */
     @Test
     public void test1ConstrutorQuadrado() {
         Ponto[] vertices = {new Ponto(0,0), new Ponto(1,0), new Ponto(1,1), new Ponto(0,1)};

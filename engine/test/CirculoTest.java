@@ -13,7 +13,10 @@ class CirculoTest {
     /**
      * Teste 1 construtor
      * Círculo válido
-     */
+      * @author Ana Sofia Almeida 68747
+ * @author Renato Chumbinho 84804
+ * @author Hugo Domingues 86128
+ */
     @Test
     public void test1ConstrutorCirculo() {
         assertNotNull(new Circulo(new Ponto(0,0), 5));
