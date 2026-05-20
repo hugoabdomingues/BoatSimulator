@@ -1,13 +1,12 @@
+import javax.swing.SwingUtilities;
+
 import controller.Controller;
 import entity.CenarioLoader;
 import entity.Mapa;
 import gui.View;
 
-import javax.swing.*;
-
 /**
  * @author Ana Sofia Almeida 68747
- * @author Renato Chumbinho 84804
  * @author Hugo Domingues 86128
  */
 public class Main {

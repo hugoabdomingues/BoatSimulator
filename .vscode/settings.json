@@ -1,0 +1,16 @@
+{
+  "java.jdt.ls.java.home": "C:\\Users\\hugoa\\.jdks\\ms-25.0.3",
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-25",
+      "path": "C:\\Users\\hugoa\\.jdks\\ms-25.0.3",
+      "default": true
+    }
+  ],
+  "maven.terminal.customEnv": [
+    {
+      "environmentVariable": "JAVA_HOME",
+      "value": "C:\\Users\\hugoa\\.jdks\\ms-25.0.3"
+    }
+  ]
+}
